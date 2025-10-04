@@ -1,4 +1,8 @@
 <div align="center">
+---
+Este software foi desenvolvido em conformidade com a **ISO 56005:2020**, que orienta a gestão da propriedade intelectual em processos de inovação.  
+Foram adotadas práticas de documentação de autoria (controle de versões em Git), definição de licença de uso e análise de riscos relacionados ao uso de bibliotecas externas, garantindo a proteção e valorização do resultado inovador.
+---
 
 # ⚖️ DIREITOS AUTORAIS E PROPRIEDADE INTELECTUAL
 
@@ -84,6 +88,25 @@
 </table>
 
 ---
-Este projeto foi desenvolvido em conformidade com a **ISO 56005:2020**, que orienta a gestão da propriedade intelectual em processos de inovação.  
-Foram adotadas práticas de documentação de autoria (controle de versões em Git), definição de licença de uso e análise de riscos relacionados ao uso de bibliotecas externas, garantindo a proteção e valorização do resultado inovador.
+
+## 👤 **INFORMAÇÕES DO AUTOR**
+
+<table>
+<tr>
+<td width="50%">
+
+### 🎓 **Autor Original**
+- **Nome:** Delean P. Mafra
+- **Curso:** Ciência de Dados
+- **Instituição:** Descomplica Faculdade Digital
+- **Projeto:** Projeto de Extensão III
+- **Ano:** 2025
+
+### 🌐 **Links**
+- **GitHub:** [Delean-Mafra/pex3](https://github.com/Delean-Mafra/pex3)
+- **LinkedIn:** [delean-mafra](https://www.linkedin.com/in/delean-mafra/)
+
+</td>
+<td width="50%">
+
 ---
