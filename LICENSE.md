@@ -105,3 +105,14 @@
 </td>
 <td width="50%">
 ---
+Este software foi desenvolvido em conformidade com a **ISO 56005:2020**, que orienta a gestão da propriedade intelectual em processos de inovação.  
+Foram adotadas práticas de documentação de autoria (controle de versões em Git), definição de licença de uso e análise de riscos relacionados ao uso de bibliotecas externas, garantindo a proteção e valorização do resultado inovador.
+---
+# Referências(Padrão NBR 6023:2018)
+
+INTERNATIONAL ORGANIZATION FOR STANDARDIZATION. ISO 56005:2020 – Innovation management — Tools and methods for intellectual property management. Geneva: ISO, 2020.  
+
+BRASIL. Conselho Nacional de Educação. Câmara de Educação Superior. Resolução CNE/CES nº 7, de 18 de dezembro de 2018. Institui as Diretrizes para a Extensão na Educação Superior Brasileira. Diário Oficial da União: seção 1, Brasília, DF, 19 dez. 2018.  
+---
+
+
