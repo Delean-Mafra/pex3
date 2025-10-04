@@ -1,8 +1,10 @@
-<div align="center">
 ---
 Este software foi desenvolvido em conformidade com a **ISO 56005:2020**, que orienta a gestão da propriedade intelectual em processos de inovação.  
 Foram adotadas práticas de documentação de autoria (controle de versões em Git), definição de licença de uso e análise de riscos relacionados ao uso de bibliotecas externas, garantindo a proteção e valorização do resultado inovador.
 ---
+
+<div align="center">
+
 
 # ⚖️ DIREITOS AUTORAIS E PROPRIEDADE INTELECTUAL
 
@@ -110,3 +112,4 @@ Foram adotadas práticas de documentação de autoria (controle de versões em G
 <td width="50%">
 
 ---
+
