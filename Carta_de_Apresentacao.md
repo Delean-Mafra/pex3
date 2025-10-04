@@ -1,6 +1,6 @@
 # CARTA DE APRESENTAÇÃO DE PROJETOS DE EXTENSÃO
 
-___, de ___ de 20___.
+___, de ___ de 2005.
 
 **Aos cuidados da:** _______________________________________
 
@@ -28,7 +28,6 @@ Sem mais, colocamo-nos à disposição para os esclarecimentos que se fizerem ne
 
 ### Cordialmente,
 
-**Adriane Cristina Guerina**  
 **Adriane Cristina Guerino**  
 Coordenadora de Extensão  
 
