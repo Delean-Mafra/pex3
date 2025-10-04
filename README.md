@@ -29,5 +29,5 @@ Assim que a instituição for escolhida, este README será atualizado com os det
 
 ---
 
-✍️ **Autor:** Delean Mafra  
+✍️ **Autor:** [Seu Nome]  
 📚 **Curso:** CST em Ciência de Dados - UniAmérica Descomplica
