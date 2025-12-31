@@ -14,7 +14,7 @@ Este é um **Projeto de Extensão Universitária (Pex III)**, realizado como ati
 
 ![Creative Commons License](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-nc.svg)
 
-**Licença:** [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.pt-br)
+**Licença:** [CC BY-NC 4.0](http://delean-mafra.github.io/pex3/CC_BY_NC_4.0)
 
 </div>
 
@@ -95,9 +95,9 @@ Foi criada uma **aplicação web intuitiva** chamada **Financeiro Pro** que ofer
 
 <div align="center">
 
-[![CC](https://mirrors.creativecommons.org/presskit/icons/cc.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
-[![BY](https://mirrors.creativecommons.org/presskit/icons/by.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
-[![NC](https://mirrors.creativecommons.org/presskit/icons/nc.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![CC](https://mirrors.creativecommons.org/presskit/icons/cc.svg)](http://delean-mafra.github.io/pex3/CC_BY_NC_4.0)
+[![BY](https://mirrors.creativecommons.org/presskit/icons/by.svg)](http://delean-mafra.github.io/pex3/CC_BY_NC_4.0)
+[![NC](https://mirrors.creativecommons.org/presskit/icons/nc.svg)](http://delean-mafra.github.io/pex3/CC_BY_NC_4.0)
 
 </div>
 
@@ -120,7 +120,7 @@ Foi criada uma **aplicação web intuitiva** chamada **Financeiro Pro** que ofer
 > A utilização para fins educacionais, pesquisas acadêmicas e não-comerciais é expressamente permitida com a devida atribuição.
 
 **🔗 Link da Licença**
-> [creativecommons.org/licenses/by-nc/4.0/deed.pt-br](https://creativecommons.org/licenses/by-nc/4.0/deed.pt-br)
+> [creativecommons.org/licenses/by-nc/4.0/deed.pt-br](http://delean-mafra.github.io/pex3/CC_BY_NC_4.0)
 
 </td>
 </tr>
@@ -140,7 +140,7 @@ Foi criada uma **aplicação web intuitiva** chamada **Financeiro Pro** que ofer
 - **Semestre:** 3º Semestre
 - **Instituição:** Descomplica Faculdade Digital / UniAmérica
 - **Projeto:** Projeto de Extensão III (Pex III)
-- **Data:** 2025
+- **Data:** 2025/2026
 
 ### 📊 **Tipo de Projeto**
 - **Natureza:** Projeto de Extensão Universitária
@@ -162,7 +162,7 @@ Para usar, modificar ou referir-se a este projeto, utilize:
 Autor: Delean P. Mafra
 Licença: CC BY-NC 4.0
 Projeto: Financeiro Pro - Projeto de Extensão III
-Ano: 2025
+Ano: 2025/2026
 ```
 
 </td>
@@ -200,5 +200,6 @@ Este projeto foi desenvolvido como atividade de Extensão Universitária (Pex II
 ---
 
 **Última atualização:** Dezembro de 2025
+
 
 **Copyright © Delean Mafra - Todos os direitos reservados.**
