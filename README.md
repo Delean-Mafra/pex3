@@ -311,7 +311,7 @@ python version_compilador.py
 ## 🔗 Links Úteis
 
 - 📄 **Relatório Online**: [https://delean-mafra.github.io/pex3](https://delean-mafra.github.io/pex3)
-- 📋 **Licença**: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.pt-br)
+- 📋 **Licença**: [CC BY-NC 4.0](http://delean-mafra.github.io/pex3/CC_BY_NC_4.0)
 - 🏫 **Instituição**: Centro Universitário União das Américas Descomplica
 
 ---
@@ -343,4 +343,5 @@ Para mais informações: [LICENSE.md](LICENSE.md)
 <p align="center">
   <strong>Copyright © 2025 Delean Mafra - Todos os direitos reservados.</strong>
 </p>
+
 
