@@ -1,1 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Resumo Geral</h2>
 
+<div class="filter-bar">
+    <form method="GET" class="row g-3 align-items-end">
+        <div class="col-md-4">
+            <label class="form-label">Data Início</label>
+            <input type="date" name="data_inicio" class="form-control" value="{{ data_inicio }}">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Data Fim</label>
+            <input type="date" name="data_fim" class="form-control" value="{{ data_fim }}">
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary w-100">Filtrar Resumo</button>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card bg-success text-white p-4">
+            <h5>Receitas</h5>
+            <h3>R$ {{ "%.2f"|format(receitas) }}</h3>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-danger text-white p-4">
+            <h5>Despesas</h5>
+            <h3>R$ {{ "%.2f"|format(despesas) }}</h3>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card {{ 'bg-primary' if saldo >= 0 else 'bg-warning' }} text-white p-4">
+            <h5>Saldo no Período</h5>
+            <h3>R$ {{ "%.2f"|format(saldo) }}</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

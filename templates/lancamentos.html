@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Todos os Lançamentos</h2>
+
+<div class="filter-bar">
+    <form method="GET" class="row g-3 align-items-end">
+        <div class="col-md-4">
+            <label class="form-label">De:</label>
+            <input type="date" name="data_inicio" class="form-control" value="{{ data_inicio }}">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Até:</label>
+            <input type="date" name="data_fim" class="form-control" value="{{ data_fim }}">
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-secondary w-100">Filtrar Lista</button>
+        </div>
+    </form>
+</div>
+
+<table class="table table-hover table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Data</th>
+            <th>Categoria</th>
+            <th>Valor</th>
+            <th>Pagamento</th>
+            <th>Criação Automática</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for t in transactions %}
+        <tr>
+            <td>{{ t.id }}</td>
+            <td><span class="badge {{ 'bg-success' if t.tipo == 'receber' else 'bg-danger' }}">{{ t.tipo.upper() }}</span></td>
+            <td>{{ t.data_gasto }}</td>
+            <td>{{ t.categoria }}</td>
+            <td>R$ {{ "%.2f"|format(t.valor) }}</td>
+            <td>{{ t.forma_pagamento }}</td>
+            <td><small class="text-muted">{{ t.data_criacao }}</small></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

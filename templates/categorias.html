@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Categorias Contábeis</h2>
+<form method="POST" class="row g-2 mb-4">
+    <div class="col-md-5"><input type="text" name="nome" placeholder="Nome" class="form-control" required></div>
+    <div class="col-md-4"><select name="tipo" class="form-control"><option value="despesa">Despesa</option><option value="receita">Receita</option><option value="ambos">Ambos</option></select></div>
+    <div class="col-md-3"><button class="btn btn-primary w-100">Adicionar</button></div>
+</form>
+<table class="table"><thead><tr><th>Nome</th><th>Tipo</th></tr></thead>
+    <tbody>{% for c in categorias %}<tr><td>{{c.nome}}</td><td>{{c.tipo}}</td></tr>{% endfor %}</tbody>
+</table>
+{% endblock %}

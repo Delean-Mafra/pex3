@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Análise de Dados</h2>
+    <form method="GET" class="d-flex gap-2">
+        <input type="date" name="data_inicio" class="form-control form-control-sm" value="{{ data_inicio }}">
+        <input type="date" name="data_fim" class="form-control form-control-sm" value="{{ data_fim }}">
+        <button type="submit" class="btn btn-sm btn-dark">Filtrar</button>
+    </form>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+            <h6>Gastos por Categoria</h6>
+            <canvas id="chartCategorias"></canvas>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+            <h6>Receita por Forma de Pagamento</h6>
+            <canvas id="chartPagamento"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card p-3 shadow-sm">
+            <h6>Comparativo Mensal (Receita vs Despesa)</h6>
+            <canvas id="chartRecDespMensal"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card p-3 shadow-sm">
+            <h6>Evolução do Saldo Acumulado</h6>
+            <canvas id="chartEvolucao"></canvas>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card p-3 shadow-sm">
+            <h6>Gastos Mensais por Categoria (Agrupado)</h6>
+            <canvas id="chartMensalCategoria"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    const setupChart = (id, type, labels, datasets) => {
+        new Chart(document.getElementById(id), { type, data: { labels, datasets } });
+    };
+
+    setupChart('chartCategorias', 'bar', {{ cat_labels|tojson }}, [{ label: 'R$', data: {{ cat_values|tojson }}, backgroundColor: '#e67e22' }]);
+    setupChart('chartPagamento', 'pie', {{ pag_labels|tojson }}, [{ data: {{ pag_values|tojson }}, backgroundColor: ['#2ecc71','#3498db','#9b59b6','#f1c40f','#e74c3c'] }]);
+    setupChart('chartRecDespMensal', 'bar', {{ meses_labels|tojson }}, [
+        { label: 'Receitas', data: {{ mensal_receitas|tojson }}, backgroundColor: '#0d6efd' },
+        { label: 'Despesas', data: {{ mensal_despesas|tojson }}, backgroundColor: '#dc3545' }
+    ]);
+    setupChart('chartEvolucao', 'line', {{ evolucao_datas|tojson }}, [{ label: 'Saldo R$', data: {{ evolucao_saldo|tojson }}, borderColor: '#2c3e50', fill: true, tension: 0.3 }]);
+
+    const cores = ['#1abc9c', '#3498db', '#9b59b6', '#f1c40f', '#e67e22', '#e74c3c'];
+    new Chart(document.getElementById('chartMensalCategoria'), {
+        type: 'bar',
+        data: {
+            labels: {{ meses_labels|tojson }},
+            datasets: [
+                {% for cat in categorias_lista %}
+                { label: '{{ cat }}', data: {{ dados_mensais_cat[cat]|tojson }}, backgroundColor: cores[{{ loop.index0 }} % cores.length] },
+                {% endfor %}
+            ]
+        }
+    });
+</script>
+{% endblock %}
