@@ -1,0 +1,420 @@
+Número de referência
+9 páginas
+© ABNT 2025
+ABNT NBR 15287:2025
+ABNT NBR
+15287
+Terceira edição
+18.03.2025
+Informação e documentação — Projeto
+de pesquisa — Apresentação
+Information and documentation — Research project — Presentation
+NORMA
+BRASILEIRA
+ICS 01.120; 01.140.40
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA
+ii
+ABNT NBR 15287:2025
+© ABNT 2025 - Todos os direitos reservados
+© ABNT 2025
+Todos os direitos reservados. A menos que especificado de outro modo, nenhuma parte desta publicação pode ser
+reproduzida ou utilizada por qualquer meio, eletrônico ou mecânico, incluindo fotocópia e microfilme, sem permissão por
+escrito da ABNT.
+ABNT
+Av. Treze de Maio, 13 - 28º andar
+20031-901 - Rio de Janeiro - RJ
+Tel.: + 55 21 3974-2300
+Fax: + 55 21 3974-2346
+abnt@abnt.org.br
+www.abnt.org.br
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA
+iii
+ABNT NBR 15287:2025
+© ABNT 2025 - Todos os direitos reservados
+Sumário Página
+Prefácio ...............................................................................................................................................iv
+1 Escopo ................................................................................................................................1
+2 Referências normativas.....................................................................................................1
+3	 Termos e definições...........................................................................................................1
+4 Estrutura .............................................................................................................................3
+4.1 Parte externa.......................................................................................................................3
+4.1.1 Capa.....................................................................................................................................3
+4.1.2 Lombada .............................................................................................................................4
+4.2 Parte interna .......................................................................................................................4
+4.2.1 Elementos pré-textuais......................................................................................................4
+4.2.2 Elementos textuais.............................................................................................................5
+4.2.3 Elementos pós-textuais.....................................................................................................5
+5 Regras gerais......................................................................................................................6
+5.1 Formato...............................................................................................................................6
+5.2 Espaçamento......................................................................................................................7
+5.2.1 Notas de rodapé .................................................................................................................7
+5.2.2 Indicativos de seção ..........................................................................................................7
+5.2.3 Títulos sem indicativo numérico ......................................................................................7
+5.3 Paginação ...........................................................................................................................7
+5.4 Numeração progressiva ....................................................................................................8
+5.5	 Citações ..............................................................................................................................8
+5.6 Siglas...................................................................................................................................8
+5.7	 Equações e fórmulas .........................................................................................................8
+5.8	 Ilustrações ..........................................................................................................................8
+5.9 Tabelas ................................................................................................................................9
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA
+iv
+ABNT NBR 15287:2025
+© ABNT 2025 - Todos os direitos reservados
+Prefácio
+A Associação Brasileira de Normas Técnicas (ABNT) é o Foro Nacional de Normalização. As Normas
+Brasileiras, cujo conteúdo é de responsabilidade dos Comitês Brasileiros (ABNT/CB), dos Organismos
+de Normalização Setorial (ABNT/ONS) e das Comissões de Estudo Especiais (ABNT/CEE),
+são elaboradas por Comissões de Estudo (CE), formadas pelas partes interessadas no tema objeto
+da normalização.
+Os Documentos Técnicos ABNT são elaborados conforme as regras da ABNT Diretiva 2.
+A ABNT chama a atenção para que, apesar de ter sido solicitada manifestação sobre eventuais
+direitos de patentes durante a Consulta Nacional, estes podem ocorrer e devem ser comunicados
+à ABNT a qualquer momento (Lei nº 9.279, de 14 de maio de 1996).
+Os Documentos Técnicos ABNT, assim como as Normas Internacionais (ISO e IEC), são voluntários
+e não incluem requisitos contratuais, legais ou estatutários. Os Documentos Técnicos ABNT não
+substituem Leis, Decretos ou Regulamentos, aos quais os usuários devem atender, tendo precedência
+sobre qualquer Documento Técnico ABNT.
+Ressalta-se que os Documentos Técnicos ABNT podem ser objeto de citação em Regulamentos
+Técnicos. Nestes casos, os órgãos responsáveis pelos Regulamentos Técnicos podem determinar
+as datas para exigência dos requisitos de quaisquer Documentos Técnicos ABNT.
+A ABNT NBR 15287 foi elaborada no Comitê Brasileiro de Documentação e Informação (ABNT/CB-014),
+pela Comissão de Estudo de Documentação (CE-014:000.001). O Projeto de Revisão foi submetido
+à Consulta Nacional no período de 04.09.2024 a 03.10.2024.
+A ABNT NBR 15287:2025 cancela e substitui a ABNT NBR 15287:2011, a qual foi tecnicamente
+revisada.
+O Escopo em inglês da ABNT NBR 15287 é o seguinte:
+Scope
+This Standard specifies general principles for the writing of research project.
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA
+NORMA BRASILEIRA ABNT NBR 15287:2025
+© ABNT 2025 - Todos os direitos reservados 1
+Informação e documentação — Projeto de pesquisa — Apresentação
+1 Escopo
+Esta Norma especifica os princípios gerais para a elaboração de projetos de pesquisa.
+2 Referências normativas
+Os documentos a seguir são citados no texto de tal forma que seus conteúdos, totais ou parciais,
+constituem requisitos para este Documento. Para referências datadas, aplicam-se somente as edições
+citadas. Para referências não datadas, aplicam-se as edições mais recentes do referido documento
+(incluindo emendas).
+ABNT NBR 6023, Informação e documentação – Referências – Elaboração
+ABNT NBR 6024, Informação e documentação – Numeração progressiva das seções de um
+documento – Apresentação
+ABNT NBR 6027, Informação e documentação – Sumário – Apresentação
+ABNT NBR 6034, Informação e documentação – Índice – Apresentação
+ABNT NBR 10520, Informação e documentação – Citações em documentos – Apresentação
+ABNT NBR 12225, Informação e documentação – Lombada – Apresentação
+IBGE. Normas de apresentação tabular. 3. ed. Rio de Janeiro: IBGE, 1993.
+3 Termos e definições
+Para os efeitos deste documento, aplicam-se os seguintes termos e definições.
+3.1
+abreviatura
+representação de uma palavra por meio de alguma(s) de sua(s) sílaba(s) ou letra(s)
+3.2
+anexo
+texto ou documento não elaborado pelo autor, que serve de fundamentação, comprovação e ilustração
+3.3
+apêndice
+texto ou documento elaborado pelo autor, a fim de complementar sua argumentação, sem prejuízo
+da unidade nuclear do trabalho
+3.4
+autor
+pessoa física responsável pela criação do conteúdo intelectual ou artístico de um trabalho
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA
+2
+ABNT NBR 15287:2025
+© ABNT 2025 - Todos os direitos reservados
+3.5
+capa
+proteção externa do trabalho sobre a qual se imprimem as informações indispensáveis à sua identificação
+3.6
+citação
+menção, no texto, de uma informação extraída de outra fonte
+3.7
+elemento pós-textual
+parte que sucede o texto e complementa o trabalho
+3.8
+elemento pré-textual
+parte que antecede o texto com informações que ajudam na identificação e utilização do trabalho
+3.9
+elemento textual
+parte em que é exposto o conteúdo do trabalho
+3.10
+entidade
+pessoa jurídica constituída para fins específicos
+3.11
+folha
+papel com formato definido composto de duas faces, anverso e verso
+3.12
+folha de rosto
+folha que contém os elementos essenciais à identificação do trabalho
+3.13
+glossário
+relação de palavras ou expressões técnicas de uso restrito ou de sentido obscuro, utilizadas no texto,
+acompanhadas das respectivas definições
+3.14
+ilustração
+designação genérica de imagem que ilustra ou elucida um texto
+3.15
+lombada
+parte da capa do trabalho que reúne as margens internas das folhas, sejam elas costuradas,
+grampeadas, coladas ou mantidas juntas de outra maneira
+3.16
+página
+cada uma das faces de uma folha
+3.17
+projeto de pesquisa
+fase da pesquisa na qual é descrita a sua estrutura inicial
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA
+3
+ABNT NBR 15287:2025
+© ABNT 2025 - Todos os direitos reservados
+3.18
+referência
+conjunto padronizado de elementos descritivos retirados de um documento, que permite sua identificação
+individual
+3.19
+sigla
+conjunto de letras iniciais dos vocábulos e/ou números, que representa um determinado nome
+3.20
+símbolo
+sinal que substitui o nome de uma coisa ou de uma ação
+3.21
+subtítulo
+informações apresentadas em seguida ao título, visando esclarecê-lo ou complementá-lo, de acordo
+com o conteúdo do trabalho
+3.22
+sumário
+enumeração das divisões, seções e outras partes do trabalho, na mesma ordem e grafia em que
+a matéria nele se sucede
+3.23
+tabela
+forma não discursiva de apresentar informações das quais o dado numérico se destaca como
+informação central
+3.24
+título
+palavra, expressão ou frase que designa o assunto ou o conteúdo de um trabalho
+3.25
+volume
+unidade física do trabalho
+4 Estrutura
+A estrutura de um projeto de pesquisa compreende parte externa e parte interna.
+4.1 Parte externa
+Deve ser apresentada conforme 4.1.1 e 4.1.2.
+4.1.1 Capa
+Elemento opcional. As informações devem ser apresentadas na seguinte ordem:
+ a) nome da entidade para a qual deve ser submetido o trabalho, quando solicitado;
+ b) nome(s) do(s) autor(es);
+ c) título;
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA
+4
+ABNT NBR 15287:2025
+© ABNT 2025 - Todos os direitos reservados
+ d) subtítulo: se houver, deve ser precedido de dois pontos, evidenciando a sua subordinação ao título;
+ e) número do volume: se houver mais de um, deve constar em cada capa a especificação do
+respectivo volume;
+ f) local (cidade) da entidade onde deve ser apresentado o trabalho;
+NOTA No caso de cidades homônimas, recomenda-se o acréscimo da sigla da unidade da federação.
+ g) ano de entrega.
+4.1.2 Lombada
+Elemento opcional. Se for impressa, deve ser apresentada conforme a ABNT NBR 12225.
+4.2 Parte interna
+Deve ser apresentada conforme 4.2.1 a 4.2.3.
+4.2.1 Elementos pré-textuais
+Devem ser conforme 4.2.1.1 a 4.2.1.6.
+4.2.1.1 Folha de rosto
+Elemento obrigatório. As informações devem ser apresentadas na seguinte ordem:
+ a) nome(s) do(s) autor(es);
+ b) título;
+ c) subtítulo, se houver;
+ d) número do volume: se houver mais de um, deve constar em cada folha de rosto a especificação
+do respectivo volume;
+ e) tipo de projeto de pesquisa e nome da entidade a que deve ser submetido o trabalho;
+ f) nome do orientador, coorientador ou coordenador, se houver;
+ g) local (cidade) da entidade onde deve ser apresentado o trabalho;
+ h) ano da entrega.
+NOTA Se exigido pela entidade, apresentar os dados curriculares do autor em folha ou página distinta
+após a folha de rosto.
+4.2.1.2 Lista de ilustrações
+Elemento opcional. Deve ser elaborada de acordo com a ordem apresentada no texto, com cada item
+designado por seu nome específico, travessão, título e respectivo número da folha ou página. Quando
+necessário, recomenda-se a elaboração de lista própria para cada tipo de ilustração (desenhos,
+esquemas, fluxogramas, fotografias, gráficos, mapas, organogramas, plantas, quadros, retratos e outras).
+EXEMPLO
+Quadro 1 – Valores aceitáveis de erro técnico de medição relativo para antropometristas iniciantes e experiente
+no Estado de São Paulo……………………………………………………………………………....……5
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA
+5
+ABNT NBR 15287:2025
+© ABNT 2025 - Todos os direitos reservados
+4.2.1.3 Lista de tabelas
+Elemento opcional. Deve ser elaborada de acordo com a ordem apresentada no texto. Cada título
+deve ser precedido da palavra Tabela, seguida de seu número de ordem de ocorrência no texto
+e travessão. Após o título, informar o respectivo número da folha ou página.
+EXEMPLO
+Tabela 1 – Perfil socioeconômico da população entrevistada, no período de julho de 2009 a abril de 2010....9
+4.2.1.4 Lista de abreviaturas e siglas
+Elemento opcional. Consiste na relação alfabética das abreviaturas e siglas utilizadas no texto,
+seguidas das palavras ou expressões correspondentes grafadas por extenso. Recomenda-se
+a elaboração de lista própria para cada tipo.
+EXEMPLO
+ABNT Associação Brasileira de Normas Técnicas
+Fil. Filosofia
+IBGE Instituto Brasileiro de Geografia e Estatística
+Inmetro Instituto Nacional de Metrologia, Normalização e Qualidade Industrial
+4.2.1.5 Lista de símbolos
+Elemento opcional. Deve ser elaborada de acordo com a ordem apresentada no texto, com o devido
+significado.
+EXEMPLO
+dab Distância euclidiana
+O(n) Ordem de um algoritmo
+4.2.1.6 Sumário
+Elemento obrigatório. Deve ser elaborado conforme a ABNT NBR 6027.
+4.2.2 Elementos textuais
+O texto deve ser constituído por uma parte introdutória, na qual devem ser expostos o tema do projeto,
+o problema a ser abordado, a(s) hipótese(s), quando couber(em), bem como o(s) objetivo(s) a ser(em)
+atingido(s) e a(s) justificativa(s). É necessário que sejam indicados o referencial teórico que o embasa,
+a metodologia a ser utilizada, assim como os recursos e o cronograma necessários à sua consecução.
+4.2.3 Elementos pós-textuais
+Devem ser conforme 4.2.3.1 a 4.2.3.5.
+4.2.3.1 Referências
+Elemento obrigatório. Devem ser elaboradas conforme a ABNT NBR 6023.
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA
+6
+ABNT NBR 15287:2025
+© ABNT 2025 - Todos os direitos reservados
+As referências de Anexo, se houver, devem constar no próprio anexo em nota de rodapé ou constituir
+lista específica.
+4.2.3.2 Glossário
+Elemento opcional. Deve ser elaborado em ordem alfabética.
+EXEMPLO
+Deslocamento: Peso da água deslocada por um navio flutuando em águas tranquilas.
+Duplo fundo: Robusto fundo interior no fundo da carena.
+4.2.3.3 Apêndice
+Elemento opcional. Deve ser precedido da palavra APÊNDICE, identificado por letras maiúsculas
+consecutivas, travessão e pelo respectivo título. Na identificação dos apêndices, devem ser utilizadas
+letras maiúsculas dobradas, quando esgotadas as letras do alfabeto. O destaque tipográfico deve ser
+o mesmo da seção primária.
+EXEMPLO
+APÊNDICE A – AVALIAÇÃO DO RENDIMENTO ESCOLAR DE ALUNOS DA ESCOLA NOSSA
+SENHORA DAS GRAÇAS
+4.2.3.4 Anexo
+Elemento opcional. Deve ser precedido da palavra ANEXO, identificado por letras maiúsculas
+consecutivas, travessão e pelo respectivo título. Na identificação dos anexos, devem ser utilizadas
+letras maiúsculas dobradas, quando esgotadas as letras do alfabeto. O destaque tipográfico deve ser
+o mesmo da seção primária.
+EXEMPLO
+ANEXO A – AMOSTRAS DE EMBALAGENS PARA INSTRUMENTOS MÉDICOS
+4.2.3.5 Índice
+Elemento opcional. Deve ser elaborado conforme a ABNT NBR 6034.
+5 Regras gerais
+A apresentação de projetos de pesquisa deve ser conforme 5.1 a 5.10.
+5.1 Formato
+Os textos devem ser apresentados em cor preta, podendo ser utilizadas outras cores somente para as
+ilustrações. Se impresso, deve ser utilizado papel branco ou reciclado, no formato A4 (21 cm × 29,7 cm).
+Os elementos pré-textuais devem iniciar no anverso da folha. Recomenda-se que os elementos
+textuais e pós-textuais sejam apresentados no anverso e verso das folhas.
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA
+7
+ABNT NBR 15287:2025
+© ABNT 2025 - Todos os direitos reservados
+As margens devem ser:
+ a) para o anverso: esquerda e superior de 3 cm, e direita e inferior de 2 cm;
+ b) para o verso: direita e superior de 3 cm, e esquerda e inferior de 2 cm.
+Recomenda-se que o texto, quando digitado, seja em fonte tamanho 12 para todo o trabalho, inclusive
+para a capa, se houver, excetuando-se as citações com mais de três linhas, notas de rodapé, paginação,
+fontes e legendas das ilustrações e das tabelas, que devem ser em tamanho menor e uniforme.
+5.2 Espaçamento
+Todo o texto deve ser digitado ou datilografado com espaçamento 1,5 entre as linhas, excetuando-se
+as citações de mais de três linhas, notas de rodapé, referências, títulos das ilustrações e das tabelas,
+fontes e legendas das ilustrações e das tabelas, tipo de projeto de pesquisa e nome da entidade,
+que devem ser digitados ou datilografados em espaço simples. As referências, ao final do trabalho,
+devem ser separadas entre si por um espaço simples em branco.
+Na folha de rosto, o tipo de projeto de pesquisa e o nome da entidade a que deve ser submetido
+o trabalho devem ser alinhados do meio da mancha gráfica até a margem direita.
+5.2.1 Notas de rodapé
+As notas de rodapé devem ser digitadas ou datilografadas dentro das margens, ficando separadas
+do texto por um espaço simples de entrelinhas e por filete de 5 cm, a partir da margem esquerda.
+As notas devem ser alinhadas, a partir da segunda linha da mesma nota, abaixo da primeira letra da
+primeira palavra, de forma a destacar o expoente sem espaço entre elas e com fonte menor.
+5.2.2 Indicativos de seção
+O indicativo numérico, em algarismo arábico, de uma seção precede seu título, alinhado à esquerda,
+separado por um espaço de caractere. Os títulos das seções primárias devem começar em página
+ímpar (anverso), na parte superior da mancha gráfica, e ser separados do texto que os sucede por
+um espaço em branco de 1,5 entre as linhas. Da mesma forma, os títulos das subseções devem ser
+separados do texto que os precede e que os sucede por um espaço em branco de 1,5 entre as linhas.
+Títulos que ocupem mais de uma linha devem ser, a partir da segunda linha, alinhados abaixo da
+primeira letra da primeira palavra do título.
+5.2.3 Títulos sem indicativo numérico
+Os títulos sem indicativo numérico – errata, lista de ilustrações, lista de tabelas, lista de abreviaturas
+e siglas, lista de símbolos, sumário, referências, glossário, apêndice(s), anexo(s) e índice(s) – devem
+ser centralizados.
+5.3 Paginação
+As folhas ou páginas pré-textuais devem ser contadas, mas não numeradas.
+Para trabalhos digitados ou datilografados somente no anverso, todas as folhas, a partir da folha de
+rosto, devem ser contadas sequencialmente, considerando somente o anverso. A numeração deve
+figurar, a partir da primeira folha da parte textual, em algarismos arábicos, no canto superior direito
+da folha, a 2 cm da borda superior, ficando o último algarismo a 2 cm da borda direita da folha.
+Quando o trabalho for digitado ou datilografado em anverso e verso, a numeração das páginas deve
+ser colocada no anverso da folha, no canto superior direito; e no verso, no canto superior esquerdo.
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA
+8
+ABNT NBR 15287:2025
+© ABNT 2025 - Todos os direitos reservados
+No caso de o trabalho ser constituído por mais de um volume, deve ser mantida uma única sequência
+de numeração das folhas ou páginas, do primeiro ao último volume. Se houver apêndice e anexo,
+as suas folhas ou páginas devem ser numeradas de maneira contínua, e sua paginação deve dar
+seguimento à do texto principal.
+5.4 Numeração progressiva
+Deve ser elaborada conforme a ABNT NBR 6024.
+A numeração progressiva deve ser utilizada para evidenciar a sistematização do conteúdo do trabalho.
+Destacam-se gradativamente, no texto, os títulos das seções, utilizando-se os recursos de negrito,
+itálico ou sublinhado e outros, no sumário, e, de forma idêntica, no texto.
+5.5 Citações
+Devem ser apresentadas conforme a ABNT NBR 10520.
+5.6 Siglas
+A sigla, quando mencionada pela primeira vez no texto, deve ser indicada entre parênteses, precedida
+do nome completo.
+EXEMPLO
+Associação Brasileira de Normas Técnicas (ABNT)
+5.7 Equações e fórmulas
+Para facilitar a leitura, recomenda-se que as equações e fórmulas sejam destacadas no texto e, se
+necessário, numeradas com algarismos arábicos entre parênteses, alinhados à direita. Nas menções
+subsequentes, pode-se utilizar somente o número. Na sequência do texto, é permitido o uso de uma
+entrelinha maior que comporte seus elementos (expoentes, índices, entre outros).
+EXEMPLO
+x2 + y2 = z2 (1)
+(x2 + y2)/5 = n (2)
+5.8 Ilustrações
+Qualquer tipo de ilustração deve ser precedida por sua palavra designativa (desenho, esquema, fluxograma,
+fotografia, gráfico, mapa, organograma, planta, quadro, retrato, figura, imagem, entre outros), seguida de
+seu número de ordem de ocorrência no texto, em algarismos arábicos, de travessão e do respectivo título.
+Imediatamente após a ilustração, deve ser indicada a fonte consultada, conforme a ABNT NBR 10520,
+legenda, notas e, se houver, outras informações necessárias à sua compreensão. A ilustração
+produzida pelo autor, para o trabalho apresentado, deve conter na fonte esta informação: elaborado
+pelo próprio autor ou elaboração própria ou o próprio autor, entre outros.
+A ilustração deve ser citada no texto e inserida o mais próximo possível do trecho a que se refere.
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA
+9
+ABNT NBR 15287:2025
+© ABNT 2025 - Todos os direitos reservados
+5.9 Tabelas
+Devem ser citadas no texto, inseridas o mais próximo possível do trecho a que se referem e padronizadas
+conforme as normas de apresentação tabular do Instituto Brasileiro de Geografia e Estatística (IBGE).
+A fonte consultada deve ser indicada conforme a ABNT NBR 10520.
+A tabela produzida pelo autor, para o trabalho apresentado, deve conter na fonte esta informação:
+elaborada pelo próprio autor ou elaboração própria ou o próprio autor, entre outros.
+Exemplar para uso exclusivo - UNIVERSIDADE FEDERAL DE SANTA CATARINA - 83.899.526/0001-82
+Impresso por: UFSC-JAVA

@@ -256,45 +256,11 @@ Este projeto de extensão me permitiu aplicar na prática os conhecimentos adqui
 
 O sistema desenvolvido resolve problemas concretos de gestão financeira e controle de estoque, automatizando processos que antes eram manuais e propensos a erros. A integração entre os módulos garante consistência dos dados e oferece uma visão unificada da saúde do negócio.
 
-### 7.4 Próximos Passos Sugeridos
-
-- Implementação de modelos preditivos para previsão de demanda
-- Análise de séries temporais para identificar sazonalidade
-- Desenvolvimento de relatórios mais avançados com gráficos interativos
-- Implementação de sistema de backup automático
-- Adição de módulo de clientes e fornecedores
-
----
-
-## 8. Bibliografia
-
-ASSUNÇÃO, R. M., & OLIVEIRA, J. P. (2016). *Inclusão digital e alfabetização tecnológica: um estudo de caso.* Salvador: EDUFBA.
-
-BATISTA, E. S. (2012). *Tecnologias assistivas e inclusão digital.* São Paulo: Cultura Acadêmica.
-
-KEEGAN, V. (2015). *Desenvolvimento de jogos digitais.* São Paulo: Novatec.
-
-MENDES, C. L. (2018). *Segurança da informação: uma visão gerencial.* São Paulo: Saraiva.
-
-MONTEIRO, M. (2014). *Design para a Internet: projetando a experiência perfeita.* Rio de Janeiro: Alta Books.
-
-NORTON, P. (2002). *Introdução à informática.* São Paulo: Makron Books.
-
-NUNES, C. S. (2017). *Robótica educacional: princípios e práticas.* Porto Alegre: Bookman.
-
-PEREIRA, J. R. M., & MENDES, L. F. (2015). *Hackathons: inovando com maratonas de programação.* São Paulo: Editora Blucher.
-
-PRESSMAN, R. S. (2019). *Engenharia de software: uma abordagem profissional.* 8. ed. Porto Alegre: AMGH.
-
-RIBEIRO, M. A., & ALVES, T. M. (2019). *Sustentabilidade e tecnologia: estratégias e práticas.* Rio de Janeiro: Elsevier.
-
-SOMMERVILLE, I. (2011). *Engenharia de Software.* 9. ed. São Paulo: Pearson.
-
-TANENBAUM, A. S., & WETHERALL, D. J. (2011). *Redes de computadores.* 5. ed. São Paulo: Pearson.
-
 ---
 
 **Centro Universitário União das Américas Descomplica**  
 **Curso de Tecnologia em Ciência de Dados**  
 **Projeto de Extensão III - Análise da Situação**  
-**Dezembro de 2025**
+**Dezembro de 2025**  
+
+**Copyright © Delean Mafra - Todos os direitos reservados | Licença: CC BY-NC 4.0**
