@@ -1,0 +1,73 @@
+{
+    "transactions": [
+        {
+            "id": 1,
+            "tipo": "receber",
+            "data_gasto": "2025-12-30",
+            "data_criacao": "30/12/2025 21:38:42",
+            "valor": 200.0,
+            "categoria": "Salário",
+            "forma_pagamento": "PIX",
+            "descricao": "teste1"
+        },
+        {
+            "id": 2,
+            "tipo": "pagar",
+            "data_gasto": "2025-12-30",
+            "data_criacao": "30/12/2025 21:39:18",
+            "valor": 10.0,
+            "categoria": "Alimentação",
+            "forma_pagamento": "PIX",
+            "descricao": "teste2"
+        },
+        {
+            "id": 3,
+            "tipo": "pagar",
+            "data_gasto": "2025-12-29",
+            "data_criacao": "30/12/2025 21:39:49",
+            "valor": 200.0,
+            "categoria": "Aluguel",
+            "forma_pagamento": "PIX",
+            "descricao": "teste4"
+        },
+        {
+            "id": 4,
+            "tipo": "receber",
+            "data_gasto": "2025-12-18",
+            "data_criacao": "30/12/2025 21:51:14",
+            "valor": 50.0,
+            "categoria": "Venda de Produto",
+            "forma_pagamento": "Cartão",
+            "descricao": "teste1"
+        }
+    ],
+    "categories": [
+        {
+            "nome": "Salário",
+            "tipo": "receita"
+        },
+        {
+            "nome": "Venda de Produto",
+            "tipo": "receita"
+        },
+        {
+            "nome": "Alimentação",
+            "tipo": "despesa"
+        },
+        {
+            "nome": "Aluguel",
+            "tipo": "despesa"
+        },
+        {
+            "nome": "Diversos",
+            "tipo": "ambos"
+        }
+    ],
+    "payment_methods": [
+        "PIX",
+        "Cartão",
+        "Dinheiro",
+        "Boleto",
+        "Outros"
+    ]
+}
