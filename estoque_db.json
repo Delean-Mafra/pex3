@@ -1,5 +1,23 @@
 {
     "vendas": [],
-    "compras": [],
+    "compras": [
+        {
+            "id": 1,
+            "data": "2025-12-31 18:56:53",
+            "fornecedor": "",
+            "numero_nf": "",
+            "itens": [
+                {
+                    "codigo_barras": "7891234567890",
+                    "nome_produto": "Arroz Integral 1kg",
+                    "quantidade": 1.0,
+                    "preco_unitario": 10.0,
+                    "subtotal": 10.0
+                }
+            ],
+            "valor_total": 10.0,
+            "observacao": ""
+        }
+    ],
     "ajustes": []
 }

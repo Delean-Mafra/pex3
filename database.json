@@ -39,6 +39,16 @@
             "categoria": "Venda de Produto",
             "forma_pagamento": "Cartão",
             "descricao": "teste1"
+        },
+        {
+            "id": 5,
+            "tipo": "pagar",
+            "data_gasto": "2025-12-31",
+            "data_criacao": "2025-12-31 18:56:53",
+            "valor": 10.0,
+            "categoria": "Compra de Produtos",
+            "forma_pagamento": "A Definir",
+            "descricao": "Compra #1"
         }
     ],
     "categories": [

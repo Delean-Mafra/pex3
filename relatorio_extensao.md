@@ -9,7 +9,7 @@
 
 ## 1. Introdução e Apresentação
 
-Iniciei meu projeto preenchendo a **CARTA DE APRESENTAÇÃO** e escolhi a organização **XXXXXXXXXXXXXX** para visitar e me apresentar. Após a autorização da organização, com o preenchimento do **TERMO DE AUTORIZAÇÃO PARA REALIZAÇÃO DAS ATIVIDADES EXTENSIONISTAS**, dei início ao projeto.
+Iniciei meu projeto preenchendo a **CARTA DE APRESENTAÇÃO** e escolhi a organização **Mercado Dal- Bo Ltda** para visitar e me apresentar. Após a autorização da organização, com o preenchimento do **TERMO DE AUTORIZAÇÃO PARA REALIZAÇÃO DAS ATIVIDADES EXTENSIONISTAS**, dei início ao projeto.
 
 ### Sobre o Projeto
 
