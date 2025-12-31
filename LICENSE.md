@@ -161,7 +161,7 @@ Para usar, modificar ou referir-se a este projeto, utilize:
 ```
 Autor: Delean P. Mafra
 Licença: CC BY-NC 4.0
-Projeto: Financeiro Pro - Projeto de Extensão III
+Projeto: Projeto de Extensão III
 Ano: 2025/2026
 ```
 
@@ -203,3 +203,4 @@ Este projeto foi desenvolvido como atividade de Extensão Universitária (Pex II
 
 
 **Copyright © Delean Mafra - Todos os direitos reservados.**
+
