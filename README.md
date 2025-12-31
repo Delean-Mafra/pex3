@@ -1,6 +1,10 @@
 # 🎓 Projeto de Extensão III - Ciência de Dados
 
 <p align="center">
+  <img src="telas/pex3.gif" alt="Demonstração do Sistema Integrado PEX III" width="800">
+</p>
+
+<p align="center">
   <img src="telas/tela_inicial.png" alt="Tela Inicial do Sistema" width="800">
 </p>
 
@@ -343,5 +347,3 @@ Para mais informações: [LICENSE.md](LICENSE.md)
 <p align="center">
   <strong>Copyright © 2025 Delean Mafra - Todos os direitos reservados.</strong>
 </p>
-
-
