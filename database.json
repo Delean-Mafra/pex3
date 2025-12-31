@@ -51,11 +51,19 @@
             "tipo": "receita"
         },
         {
+            "nome": "Venda de Produtos",
+            "tipo": "receita"
+        },
+        {
             "nome": "Alimentação",
             "tipo": "despesa"
         },
         {
             "nome": "Aluguel",
+            "tipo": "despesa"
+        },
+        {
+            "nome": "Compra de Produtos",
             "tipo": "despesa"
         },
         {
