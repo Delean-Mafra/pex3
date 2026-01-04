@@ -6,11 +6,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        html, body { height: 100%; }
         .sidebar { height: 100vh; background: #212529; color: white; position: fixed; padding-top: 20px; }
         .sidebar a { color: #adb5bd; text-decoration: none; display: block; padding: 12px 20px; }
         .sidebar a:hover, .sidebar a.active { background: #343a40; color: white; }
+        .container-fluid { display: flex; flex-direction: column; min-height: 100vh; }
+        .row { flex: 1; }
         .main-content { margin-left: 16.666667%; padding: 30px; }
         .filter-bar { background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .footer { background: #212529; color: white; padding: 15px 30px; text-align: center; border-top: 1px solid #343a40; margin-left: 16.666667%; }
+        .footer a { color: #0d6efd; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        .footer p { margin: 0; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -19,17 +26,24 @@
             <nav class="col-md-2 sidebar">
                 <h4 class="text-center">💰 Finanças</h4>
                 <hr>
-                <a href="/">🏠 Dashboard</a>
-                <a href="/lancamentos">📋 Todos Lançamentos</a>
-                <a href="/cadastrar/receber">➕ Receita</a>
-                <a href="/cadastrar/pagar">➖ Despesa</a>
-                <a href="/analytics">📊 Analytics</a>
-                <a href="/categorias">⚙️ Categorias</a>
+                <a href="{{ url_for('pex3_financeiro_index_dm') }}">🏠 Dashboard</a>
+                <a href="{{ url_for('pex3_financeiro_lancamentos_dm') }}">📋 Todos Lançamentos</a>
+                <a href="{{ url_for('pex3_financeiro_cadastrar_dm', pex3_tipo_dm='receber') }}">➕ Receita</a>
+                <a href="{{ url_for('pex3_financeiro_cadastrar_dm', pex3_tipo_dm='pagar') }}">➖ Despesa</a>
+                <a href="{{ url_for('pex3_financeiro_analytics_dm') }}">📊 Analytics</a>
+                <a href="{{ url_for('pex3_financeiro_categorias_dm') }}">⚙️ Categorias</a>
+                <hr>
+                <a href="http://127.0.0.1:5001" style="background: linear-gradient(135deg, #3498db, #2c3e50); color: white; border-radius: 5px; margin: 10px;">📦 Sistema de Estoque</a>
             </nav>
             <main class="col-md-10 main-content">
                 {% block content %}{% endblock %}
             </main>
         </div>
     </div>
+
+    <footer class="footer">
+        <p>DOI: <a href="https://doi.org/10.5281/zenodo.18143148" target="_blank">https://doi.org/10.5281/zenodo.18143148</a></p>
+        <p>Copyright © Delean Mafra - Todos os direitos reservados | Licença: <a href="https://delean-mafra.github.io/pex3/CC_BY_NC_4.0" target="_blank">CC BY-NC 4.0</a></p>
+    </footer>
 </body>
 </html>
