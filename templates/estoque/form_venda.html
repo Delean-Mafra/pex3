@@ -1,0 +1,336 @@
+{% extends "estoque/base_estoque.html" %}
+
+{% block title %}Nova Venda - Sistema de Estoque{% endblock %}
+
+{% block extra_css %}
+<style>
+    .item-row {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 10px;
+        border: 1px solid #e9ecef;
+    }
+    .item-row:hover {
+        background-color: #e9ecef;
+    }
+    .btn-remove-item {
+        color: #dc3545;
+    }
+    #totalVenda {
+        font-size: 1.5rem;
+    }
+    .estoque-baixo {
+        color: #dc3545;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2><i class="bi bi-cart-check"></i> Nova Venda</h2>
+</div>
+
+<form method="POST" id="formVenda">
+    <div class="row">
+        <!-- Informações da Venda -->
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="bi bi-person"></i> Informações da Venda
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Cliente</label>
+                            <input type="text" name="cliente" class="form-control" 
+                                   placeholder="Nome do cliente (opcional)">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Forma de Pagamento</label>
+                            <select name="forma_pagamento" class="form-select" required>
+                                <option value="">Selecione...</option>
+                                <option value="PIX">PIX</option>
+                                <option value="Dinheiro">Dinheiro</option>
+                                <option value="Cartão">Cartão</option>
+                                <option value="Boleto">Boleto</option>
+                                <option value="Outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Desconto (R$)</label>
+                            <div class="input-group">
+                                <span class="input-group-text">R$</span>
+                                <input type="number" name="desconto" id="descontoInput" class="form-control" 
+                                       step="0.01" min="0" value="0" onchange="calcularTotais()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Observação</label>
+                        <textarea name="observacao" class="form-control" rows="2" 
+                                  placeholder="Observações adicionais (opcional)"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Itens da Venda -->
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-list-check"></i> Itens da Venda</span>
+                    <button type="button" class="btn btn-sm btn-success" onclick="adicionarItem()">
+                        <i class="bi bi-plus"></i> Adicionar Item
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div id="itensContainer">
+                        <!-- Itens serão adicionados aqui -->
+                    </div>
+                    
+                    <div class="alert alert-info" id="alertSemItens">
+                        <i class="bi bi-info-circle"></i> Clique em "Adicionar Item" para incluir produtos na venda.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Resumo -->
+        <div class="col-md-4">
+            <div class="card sticky-top" style="top: 80px;">
+                <div class="card-header bg-success text-white">
+                    <i class="bi bi-calculator"></i> Resumo da Venda
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Quantidade de Itens:</span>
+                        <strong id="qtdItens">0</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Subtotal:</span>
+                        <span id="subtotalVenda">R$ 0,00</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2 text-danger">
+                        <span>Desconto:</span>
+                        <span id="descontoDisplay">- R$ 0,00</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <span>Total:</span>
+                        <strong id="totalVenda" class="text-success">R$ 0,00</strong>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success w-100">
+                        <i class="bi bi-check-lg"></i> Finalizar Venda
+                    </button>
+                    <a href="{{ url_for('pex3_listar_vendas_dm') }}" class="btn btn-secondary w-100 mt-2">
+                        <i class="bi bi-x-lg"></i> Cancelar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let itemCount = 0;
+
+function adicionarItem() {
+    itemCount++;
+    document.getElementById('alertSemItens').style.display = 'none';
+    
+    const container = document.getElementById('itensContainer');
+    const itemHtml = `
+        <div class="item-row" id="item_${itemCount}">
+            <div class="row align-items-end">
+                <div class="col-md-4 mb-2">
+                    <label class="form-label">Código de Barras</label>
+                    <div class="input-group">
+                        <input type="text" name="item_codigo[]" class="form-control codigo-input" 
+                               placeholder="Código" data-item="${itemCount}">
+                        <button type="button" class="btn btn-outline-success" onclick="buscarProdutoItem(${itemCount})">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <label class="form-label">Produto</label>
+                    <input type="text" class="form-control produto-nome" id="nome_${itemCount}" readonly 
+                           placeholder="Aguardando...">
+                </div>
+                <div class="col-md-2 mb-2">
+                    <label class="form-label">Quantidade</label>
+                    <input type="number" name="item_quantidade[]" class="form-control qtd-input" 
+                           id="qtd_${itemCount}" min="1" value="1" onchange="calcularTotais()">
+                </div>
+                <div class="col-md-2 mb-2">
+                    <label class="form-label">Preço Unit.</label>
+                    <input type="number" name="item_preco[]" class="form-control preco-input" 
+                           id="preco_${itemCount}" step="0.01" min="0" onchange="calcularTotais()">
+                </div>
+                <div class="col-md-1 mb-2">
+                    <button type="button" class="btn btn-outline-danger w-100" onclick="removerItem(${itemCount})">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <small class="text-muted" id="info_${itemCount}"></small>
+                </div>
+                <div class="col-md-6 text-end">
+                    <strong>Subtotal: R$ <span id="subtotal_${itemCount}">0.00</span></strong>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    container.insertAdjacentHTML('beforeend', itemHtml);
+    
+    // Foco no campo de código
+    document.querySelector(`#item_${itemCount} .codigo-input`).focus();
+    
+    // Evento para buscar ao pressionar Enter
+    document.querySelector(`#item_${itemCount} .codigo-input`).addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            buscarProdutoItem(this.dataset.item);
+        }
+    });
+    
+    calcularTotais();
+}
+
+function removerItem(itemId) {
+    document.getElementById('item_' + itemId).remove();
+    calcularTotais();
+    
+    // Mostra mensagem se não houver itens
+    if (document.querySelectorAll('.item-row').length === 0) {
+        document.getElementById('alertSemItens').style.display = 'block';
+    }
+}
+
+function buscarProdutoItem(itemId) {
+    const codigoInput = document.querySelector(`#item_${itemId} .codigo-input`);
+    const codigo = codigoInput.value;
+    
+    if (!codigo) return;
+    
+    fetch('/api/produto/' + codigo)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const produto = data.produto;
+                document.getElementById('nome_' + itemId).value = produto.nome;
+                document.getElementById('preco_' + itemId).value = produto.preco_venda.toFixed(2);
+                
+                // Info do estoque
+                let estoqueClass = produto.saldo > 0 ? 'bg-success' : 'bg-danger';
+                document.getElementById('info_' + itemId).innerHTML = 
+                    `<span class="badge ${estoqueClass}">Estoque: ${produto.saldo}</span>`;
+                
+                // Guarda o estoque máximo
+                document.getElementById('qtd_' + itemId).max = produto.saldo;
+                document.getElementById('qtd_' + itemId).dataset.estoque = produto.saldo;
+                
+                calcularTotais();
+                
+                // Foca na quantidade
+                document.getElementById('qtd_' + itemId).focus();
+                document.getElementById('qtd_' + itemId).select();
+            } else {
+                document.getElementById('nome_' + itemId).value = 'PRODUTO NÃO ENCONTRADO';
+                document.getElementById('info_' + itemId).innerHTML = 
+                    '<span class="badge bg-danger">Não encontrado</span>';
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+}
+
+function calcularTotais() {
+    let subtotal = 0;
+    let qtdItens = 0;
+    
+    document.querySelectorAll('.item-row').forEach((item, index) => {
+        const qtdInput = item.querySelector('.qtd-input');
+        const qtd = parseFloat(qtdInput.value) || 0;
+        const preco = parseFloat(item.querySelector('.preco-input').value) || 0;
+        const itemSubtotal = qtd * preco;
+        
+        // Verifica estoque
+        const estoqueMax = parseFloat(qtdInput.dataset.estoque) || 999999;
+        if (qtd > estoqueMax) {
+            qtdInput.classList.add('is-invalid');
+        } else {
+            qtdInput.classList.remove('is-invalid');
+        }
+        
+        // Atualiza subtotal do item
+        const itemId = item.id.replace('item_', '');
+        const subtotalEl = document.getElementById('subtotal_' + itemId);
+        if (subtotalEl) {
+            subtotalEl.textContent = itemSubtotal.toFixed(2);
+        }
+        
+        subtotal += itemSubtotal;
+        if (qtd > 0) qtdItens++;
+    });
+    
+    const desconto = parseFloat(document.getElementById('descontoInput').value) || 0;
+    const total = subtotal - desconto;
+    
+    document.getElementById('qtdItens').textContent = qtdItens;
+    document.getElementById('subtotalVenda').textContent = 'R$ ' + subtotal.toFixed(2).replace('.', ',');
+    document.getElementById('descontoDisplay').textContent = '- R$ ' + desconto.toFixed(2).replace('.', ',');
+    document.getElementById('totalVenda').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+}
+
+// Validação antes de enviar
+document.getElementById('formVenda').addEventListener('submit', function(e) {
+    const itens = document.querySelectorAll('.item-row');
+    if (itens.length === 0) {
+        e.preventDefault();
+        alert('Adicione pelo menos um item à venda!');
+        return false;
+    }
+    
+    let temItemValido = false;
+    let temEstoqueInsuficiente = false;
+    
+    itens.forEach(item => {
+        const codigo = item.querySelector('.codigo-input').value;
+        const qtdInput = item.querySelector('.qtd-input');
+        const qtd = parseFloat(qtdInput.value) || 0;
+        const estoqueMax = parseFloat(qtdInput.dataset.estoque) || 999999;
+        
+        if (codigo && qtd > 0) {
+            temItemValido = true;
+            if (qtd > estoqueMax) {
+                temEstoqueInsuficiente = true;
+            }
+        }
+    });
+    
+    if (!temItemValido) {
+        e.preventDefault();
+        alert('Preencha pelo menos um item com código e quantidade!');
+        return false;
+    }
+    
+    if (temEstoqueInsuficiente) {
+        e.preventDefault();
+        alert('Existem itens com quantidade maior que o estoque disponível!');
+        return false;
+    }
+});
+
+// Adiciona um item inicial
+adicionarItem();
+</script>
+{% endblock %}

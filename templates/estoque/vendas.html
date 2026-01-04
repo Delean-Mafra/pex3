@@ -1,0 +1,119 @@
+{% extends "estoque/base_estoque.html" %}
+
+{% block title %}Vendas - Sistema de Estoque{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-center">
+    <h2><i class="bi bi-cart-check"></i> Vendas</h2>
+    <a href="{{ url_for('pex3_nova_venda_dm') }}" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Nova Venda
+    </a>
+</div>
+
+<!-- Filtro por Data -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="GET" class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Data Início</label>
+                <input type="date" name="data_inicio" class="form-control" value="{{ data_inicio }}">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Data Fim</label>
+                <input type="date" name="data_fim" class="form-control" value="{{ data_fim }}">
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary me-2">
+                    <i class="bi bi-filter"></i> Filtrar
+                </button>
+                <a href="{{ url_for('pex3_listar_vendas_dm') }}" class="btn btn-secondary">
+                    <i class="bi bi-x-lg"></i> Limpar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Lista de Vendas -->
+<div class="card">
+    <div class="card-body">
+        {% if vendas %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Data</th>
+                        <th>Cliente</th>
+                        <th class="text-center">Itens</th>
+                        <th class="text-end">Desconto</th>
+                        <th class="text-end">Total</th>
+                        <th class="text-end">Lucro</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for venda in vendas %}
+                    <tr>
+                        <td><strong>{{ venda.id }}</strong></td>
+                        <td>{{ venda.data[:10] }}</td>
+                        <td>{{ venda.cliente or '-' }}</td>
+                        <td class="text-center">
+                            <span class="badge bg-info">{{ venda.itens|length }}</span>
+                        </td>
+                        <td class="text-end">
+                            {% if venda.desconto > 0 %}
+                            <span class="text-danger">-R$ {{ "%.2f"|format(venda.desconto) }}</span>
+                            {% else %}
+                            -
+                            {% endif %}
+                        </td>
+                        <td class="text-end text-success fw-bold">R$ {{ "%.2f"|format(venda.valor_total) }}</td>
+                        <td class="text-end">
+                            {% if venda.lucro >= 0 %}
+                            <span class="text-success">R$ {{ "%.2f"|format(venda.lucro) }}</span>
+                            {% else %}
+                            <span class="text-danger">R$ {{ "%.2f"|format(venda.lucro) }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ url_for('pex3_detalhes_venda_dm', pex3_venda_id_dm=venda.id) }}" 
+                               class="btn btn-sm btn-outline-success">
+                                <i class="bi bi-eye"></i> Detalhes
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr class="table-light">
+                        <td colspan="5" class="text-end fw-bold">Totais:</td>
+                        <td class="text-end text-success fw-bold">
+                            R$ {{ "%.2f"|format(vendas|sum(attribute='valor_total')) }}
+                        </td>
+                        <td class="text-end fw-bold">
+                            {% set total_lucro = vendas|sum(attribute='lucro') %}
+                            <span class="{{ 'text-success' if total_lucro >= 0 else 'text-danger' }}">
+                                R$ {{ "%.2f"|format(total_lucro) }}
+                            </span>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="text-muted mt-3">
+            <small>Total: {{ vendas|length }} venda(s)</small>
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <i class="bi bi-cart fs-1 text-muted"></i>
+            <p class="text-muted mt-2">Nenhuma venda encontrada.</p>
+            <a href="{{ url_for('pex3_nova_venda_dm') }}" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Registrar Venda
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

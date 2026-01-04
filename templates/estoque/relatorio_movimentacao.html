@@ -1,0 +1,193 @@
+{% extends "estoque/base_estoque.html" %}
+
+{% block title %}Relatório de Movimentação - Sistema de Estoque{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2><i class="bi bi-arrow-left-right"></i> Relatório de Movimentação</h2>
+</div>
+
+<!-- Filtro por Data -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="GET" class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Data Início</label>
+                <input type="date" name="data_inicio" class="form-control" value="{{ data_inicio }}">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Data Fim</label>
+                <input type="date" name="data_fim" class="form-control" value="{{ data_fim }}">
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary me-2">
+                    <i class="bi bi-filter"></i> Filtrar
+                </button>
+                <a href="{{ url_for('pex3_relatorio_movimentacao_dm') }}" class="btn btn-secondary">
+                    <i class="bi bi-x-lg"></i> Limpar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Cards de Resumo -->
+<div class="row mb-4">
+    <div class="col-md-4 mb-3">
+        <div class="card stat-card success position-relative">
+            <div class="card-body">
+                <div class="stat-value">R$ {{ "%.2f"|format(total_vendas) }}</div>
+                <div class="stat-label">Total em Vendas</div>
+                <i class="bi bi-cart-check"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card stat-card position-relative">
+            <div class="card-body">
+                <div class="stat-value">R$ {{ "%.2f"|format(total_compras) }}</div>
+                <div class="stat-label">Total em Compras</div>
+                <i class="bi bi-cart-plus"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card stat-card {{ 'success' if total_lucro >= 0 else 'danger' }} position-relative">
+            <div class="card-body">
+                <div class="stat-value">R$ {{ "%.2f"|format(total_lucro) }}</div>
+                <div class="stat-label">Lucro Total</div>
+                <i class="bi bi-graph-up-arrow"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Vendas -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <i class="bi bi-cart-check"></i> Vendas ({{ vendas|length }})
+            </div>
+            <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+                {% if vendas %}
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Data</th>
+                            <th class="text-end">Total</th>
+                            <th class="text-end">Lucro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for venda in vendas %}
+                        <tr>
+                            <td>{{ venda.id }}</td>
+                            <td>{{ venda.data[:10] }}</td>
+                            <td class="text-end">R$ {{ "%.2f"|format(venda.valor_total) }}</td>
+                            <td class="text-end {{ 'text-success' if venda.lucro >= 0 else 'text-danger' }}">
+                                R$ {{ "%.2f"|format(venda.lucro) }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p class="text-muted text-center mb-0">Nenhuma venda no período.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Compras -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <i class="bi bi-cart-plus"></i> Compras ({{ compras|length }})
+            </div>
+            <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+                {% if compras %}
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Data</th>
+                            <th>Fornecedor</th>
+                            <th class="text-end">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for compra in compras %}
+                        <tr>
+                            <td>{{ compra.id }}</td>
+                            <td>{{ compra.data[:10] }}</td>
+                            <td>{{ compra.fornecedor or '-' }}</td>
+                            <td class="text-end">R$ {{ "%.2f"|format(compra.valor_total) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p class="text-muted text-center mb-0">Nenhuma compra no período.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ajustes -->
+<div class="card">
+    <div class="card-header bg-warning">
+        <i class="bi bi-arrow-left-right"></i> Ajustes de Estoque ({{ ajustes|length }})
+    </div>
+    <div class="card-body">
+        {% if ajustes %}
+        <div class="table-responsive">
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Produto</th>
+                        <th>Tipo</th>
+                        <th class="text-center">Qtd</th>
+                        <th class="text-center">Saldo Anterior</th>
+                        <th class="text-center">Saldo Novo</th>
+                        <th>Motivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ajuste in ajustes %}
+                    <tr>
+                        <td>{{ ajuste.data[:10] }}</td>
+                        <td>{{ ajuste.nome_produto }}</td>
+                        <td>
+                            {% if ajuste.tipo_ajuste == 'entrada' %}
+                            <span class="badge bg-success">Entrada</span>
+                            {% elif ajuste.tipo_ajuste == 'saida' %}
+                            <span class="badge bg-danger">Saída</span>
+                            {% else %}
+                            <span class="badge bg-info">Definição</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">{{ ajuste.quantidade }}</td>
+                        <td class="text-center">{{ ajuste.saldo_anterior }}</td>
+                        <td class="text-center">{{ ajuste.saldo_novo }}</td>
+                        <td>{{ ajuste.motivo or '-' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="text-muted text-center mb-0">Nenhum ajuste no período.</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="mt-4">
+    <a href="{{ url_for('relatorios') }}" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Voltar
+    </a>
+</div>
+{% endblock %}

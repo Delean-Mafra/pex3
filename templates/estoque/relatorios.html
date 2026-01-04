@@ -1,0 +1,56 @@
+{% extends "estoque/base_estoque.html" %}
+
+{% block title %}Relatórios - Sistema de Estoque{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2><i class="bi bi-graph-up"></i> Relatórios</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-arrow-left-right fs-1 text-primary mb-3"></i>
+                <h5 class="card-title">Movimentação de Estoque</h5>
+                <p class="card-text text-muted">
+                    Visualize todas as vendas, compras e ajustes de estoque em um período.
+                </p>
+                <a href="{{ url_for('pex3_relatorio_movimentacao_dm') }}" class="btn btn-primary">
+                    <i class="bi bi-eye"></i> Visualizar
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-box-seam fs-1 text-info mb-3"></i>
+                <h5 class="card-title">Estoque Atual</h5>
+                <p class="card-text text-muted">
+                    Lista completa de produtos com saldos, preços e valores.
+                </p>
+                <a href="{{ url_for('pex3_listar_produtos_dm') }}" class="btn btn-info text-white">
+                    <i class="bi bi-eye"></i> Visualizar
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-cash-stack fs-1 text-success mb-3"></i>
+                <h5 class="card-title">Sistema Financeiro</h5>
+                <p class="card-text text-muted">
+                    Acesse o sistema financeiro para ver os lançamentos de compras e vendas.
+                </p>
+                <a href="http://127.0.0.1:5000" target="_blank" class="btn btn-success">
+                    <i class="bi bi-box-arrow-up-right"></i> Acessar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

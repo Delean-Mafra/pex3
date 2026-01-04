@@ -1,0 +1,164 @@
+{% extends "estoque/base_estoque.html" %}
+
+{% block title %}Ajuste de Estoque - Sistema de Estoque{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2><i class="bi bi-arrow-left-right"></i> Ajuste de Estoque</h2>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" id="formAjuste">
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Código de Barras <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
+                                <input type="text" name="codigo_barras" id="codigoBarras" class="form-control" 
+                                       placeholder="Digite ou escaneie o código de barras"
+                                       value="{{ request.args.get('codigo', '') }}" required autofocus>
+                                <button type="button" class="btn btn-outline-primary" onclick="buscarProduto()">
+                                    <i class="bi bi-search"></i> Buscar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Info do Produto -->
+                    <div id="infoProduto" class="alert alert-info" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Produto:</strong> <span id="nomeProduto">-</span>
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Saldo Atual:</strong> <span id="saldoAtual" class="badge bg-primary">0</span>
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Preço:</strong> R$ <span id="precoProduto">0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Tipo de Ajuste <span class="text-danger">*</span></label>
+                            <select name="tipo_ajuste" id="tipoAjuste" class="form-select" required>
+                                <option value="entrada">Entrada (Adicionar ao Estoque)</option>
+                                <option value="saida">Saída (Remover do Estoque)</option>
+                                <option value="definir">Definir Saldo (Inventário)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Quantidade <span class="text-danger">*</span></label>
+                            <input type="number" name="quantidade" id="quantidade" class="form-control" 
+                                   step="1" min="0" value="1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Motivo do Ajuste</label>
+                        <textarea name="motivo" class="form-control" rows="2" 
+                                  placeholder="Descreva o motivo do ajuste (opcional)"></textarea>
+                    </div>
+                    
+                    <!-- Preview do Ajuste -->
+                    <div id="previewAjuste" class="alert alert-warning mb-4" style="display: none;">
+                        <i class="bi bi-info-circle"></i> <span id="textoPreview"></span>
+                    </div>
+                    
+                    <hr class="my-4">
+                    
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('pex3_listar_produtos_dm') }}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Voltar
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-check-lg"></i> Confirmar Ajuste
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let produtoAtual = null;
+
+function buscarProduto() {
+    const codigo = document.getElementById('codigoBarras').value;
+    if (!codigo) return;
+    
+    fetch('/api/produto/' + codigo)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                produtoAtual = data.produto;
+                document.getElementById('infoProduto').style.display = 'block';
+                document.getElementById('nomeProduto').textContent = data.produto.nome;
+                document.getElementById('saldoAtual').textContent = data.produto.saldo;
+                document.getElementById('precoProduto').textContent = data.produto.preco_venda.toFixed(2);
+                atualizarPreview();
+            } else {
+                alert('Produto não encontrado!');
+                document.getElementById('infoProduto').style.display = 'none';
+                produtoAtual = null;
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao buscar produto');
+        });
+}
+
+function atualizarPreview() {
+    if (!produtoAtual) return;
+    
+    const tipo = document.getElementById('tipoAjuste').value;
+    const qtd = parseFloat(document.getElementById('quantidade').value) || 0;
+    const saldoAtual = produtoAtual.saldo;
+    let novoSaldo = 0;
+    let texto = '';
+    
+    if (tipo === 'entrada') {
+        novoSaldo = saldoAtual + qtd;
+        texto = `Saldo atual: ${saldoAtual} + ${qtd} = Novo saldo: ${novoSaldo}`;
+    } else if (tipo === 'saida') {
+        novoSaldo = saldoAtual - qtd;
+        texto = `Saldo atual: ${saldoAtual} - ${qtd} = Novo saldo: ${novoSaldo}`;
+        if (novoSaldo < 0) {
+            texto += ' (ATENÇÃO: Saldo ficará negativo!)';
+        }
+    } else {
+        novoSaldo = qtd;
+        texto = `Saldo atual: ${saldoAtual} → Novo saldo definido: ${novoSaldo}`;
+    }
+    
+    document.getElementById('textoPreview').textContent = texto;
+    document.getElementById('previewAjuste').style.display = 'block';
+}
+
+document.getElementById('codigoBarras').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        buscarProduto();
+    }
+});
+
+document.getElementById('tipoAjuste').addEventListener('change', atualizarPreview);
+document.getElementById('quantidade').addEventListener('input', atualizarPreview);
+
+// Buscar automaticamente se vier código na URL
+window.onload = function() {
+    const codigo = document.getElementById('codigoBarras').value;
+    if (codigo) {
+        buscarProduto();
+    }
+};
+</script>
+{% endblock %}

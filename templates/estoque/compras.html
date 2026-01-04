@@ -1,0 +1,99 @@
+{% extends "estoque/base_estoque.html" %}
+
+{% block title %}Compras - Sistema de Estoque{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-center">
+    <h2><i class="bi bi-cart-plus"></i> Compras</h2>
+    <a href="{{ url_for('pex3_nova_compra_dm') }}" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Nova Compra
+    </a>
+</div>
+
+<!-- Filtro por Data -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="GET" class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Data Início</label>
+                <input type="date" name="data_inicio" class="form-control" value="{{ data_inicio }}">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Data Fim</label>
+                <input type="date" name="data_fim" class="form-control" value="{{ data_fim }}">
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary me-2">
+                    <i class="bi bi-filter"></i> Filtrar
+                </button>
+                <a href="{{ url_for('pex3_listar_compras_dm') }}" class="btn btn-secondary">
+                    <i class="bi bi-x-lg"></i> Limpar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Lista de Compras -->
+<div class="card">
+    <div class="card-body">
+        {% if compras %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Data</th>
+                        <th>Fornecedor</th>
+                        <th>NF</th>
+                        <th class="text-center">Itens</th>
+                        <th class="text-end">Valor Total</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for compra in compras %}
+                    <tr>
+                        <td><strong>{{ compra.id }}</strong></td>
+                        <td>{{ compra.data[:10] }}</td>
+                        <td>{{ compra.fornecedor or '-' }}</td>
+                        <td>{{ compra.numero_nf or '-' }}</td>
+                        <td class="text-center">
+                            <span class="badge bg-info">{{ compra.itens|length }}</span>
+                        </td>
+                        <td class="text-end text-primary fw-bold">R$ {{ "%.2f"|format(compra.valor_total) }}</td>
+                        <td class="text-center">
+                            <a href="{{ url_for('pex3_detalhes_compra_dm', pex3_compra_id_dm=compra.id) }}" 
+                               class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-eye"></i> Detalhes
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr class="table-light">
+                        <td colspan="5" class="text-end fw-bold">Total:</td>
+                        <td class="text-end text-primary fw-bold">
+                            R$ {{ "%.2f"|format(compras|sum(attribute='valor_total')) }}
+                        </td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="text-muted mt-3">
+            <small>Total: {{ compras|length }} compra(s)</small>
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <i class="bi bi-cart fs-1 text-muted"></i>
+            <p class="text-muted mt-2">Nenhuma compra encontrada.</p>
+            <a href="{{ url_for('pex3_nova_compra_dm') }}" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Registrar Compra
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends "estoque/base_estoque.html" %}
+
+{% block title %}Detalhes da Venda #{{ venda.id }} - Sistema de Estoque{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2><i class="bi bi-cart-check"></i> Detalhes da Venda #{{ venda.id }}</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <!-- Informações da Venda -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="bi bi-info-circle"></i> Informações da Venda
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <strong>Data:</strong><br>
+                        {{ venda.data }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <strong>Cliente:</strong><br>
+                        {{ venda.cliente or '-' }}
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <strong>Observação:</strong><br>
+                        {{ venda.observacao or '-' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Itens da Venda -->
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-list-check"></i> Itens da Venda
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Produto</th>
+                                <th class="text-center">Qtd</th>
+                                <th class="text-end">Preço Unit.</th>
+                                <th class="text-end">Custo Unit.</th>
+                                <th class="text-end">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in venda.itens %}
+                            <tr>
+                                <td><code>{{ item.codigo_barras }}</code></td>
+                                <td>{{ item.nome_produto }}</td>
+                                <td class="text-center">{{ item.quantidade }}</td>
+                                <td class="text-end">R$ {{ "%.2f"|format(item.preco_unitario) }}</td>
+                                <td class="text-end text-muted">R$ {{ "%.2f"|format(item.preco_custo) }}</td>
+                                <td class="text-end">R$ {{ "%.2f"|format(item.subtotal) }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr class="table-light">
+                                <td colspan="5" class="text-end">Subtotal:</td>
+                                <td class="text-end">R$ {{ "%.2f"|format(venda.valor_bruto) }}</td>
+                            </tr>
+                            {% if venda.desconto > 0 %}
+                            <tr class="table-light">
+                                <td colspan="5" class="text-end text-danger">Desconto:</td>
+                                <td class="text-end text-danger">- R$ {{ "%.2f"|format(venda.desconto) }}</td>
+                            </tr>
+                            {% endif %}
+                            <tr class="table-success">
+                                <td colspan="5" class="text-end fw-bold">Total:</td>
+                                <td class="text-end fw-bold text-success">R$ {{ "%.2f"|format(venda.valor_total) }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Resumo -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <i class="bi bi-calculator"></i> Resumo Financeiro
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Quantidade de Itens:</span>
+                    <strong>{{ venda.itens|length }}</strong>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Total de Unidades:</span>
+                    <strong>{{ venda.itens|sum(attribute='quantidade') }}</strong>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Valor Bruto:</span>
+                    <span>R$ {{ "%.2f"|format(venda.valor_bruto) }}</span>
+                </div>
+                {% if venda.desconto > 0 %}
+                <div class="d-flex justify-content-between mb-2 text-danger">
+                    <span>Desconto:</span>
+                    <span>- R$ {{ "%.2f"|format(venda.desconto) }}</span>
+                </div>
+                {% endif %}
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Total da Venda:</span>
+                    <strong class="text-success">R$ {{ "%.2f"|format(venda.valor_total) }}</strong>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Custo Total:</span>
+                    <span class="text-muted">R$ {{ "%.2f"|format(venda.custo_total) }}</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span>Lucro:</span>
+                    <strong class="{{ 'text-success' if venda.lucro >= 0 else 'text-danger' }}">
+                        R$ {{ "%.2f"|format(venda.lucro) }}
+                    </strong>
+                </div>
+                {% if venda.valor_total > 0 %}
+                <div class="d-flex justify-content-between mt-2">
+                    <span>Margem de Lucro:</span>
+                    <span class="badge {{ 'bg-success' if venda.lucro >= 0 else 'bg-danger' }}">
+                        {{ "%.1f"|format((venda.lucro / venda.valor_total) * 100) }}%
+                    </span>
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-footer">
+                <a href="{{ url_for('pex3_listar_vendas_dm') }}" class="btn btn-secondary w-100">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+        </div>
+        
+        <div class="alert alert-success mt-3">
+            <i class="bi bi-check-circle"></i> 
+            Esta venda gerou um lançamento de receita (contas a receber) no sistema financeiro.
+        </div>
+    </div>
+</div>
+{% endblock %}

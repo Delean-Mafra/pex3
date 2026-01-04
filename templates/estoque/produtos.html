@@ -1,0 +1,109 @@
+{% extends "estoque/base_estoque.html" %}
+
+{% block title %}Produtos - Sistema de Estoque{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-center">
+    <h2><i class="bi bi-box"></i> Produtos</h2>
+    <a href="{{ url_for('pex3_cadastrar_produto_dm') }}" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Novo Produto
+    </a>
+</div>
+
+<!-- Filtro de Busca -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="GET" class="row g-3">
+            <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="text" name="busca" class="form-control" 
+                           placeholder="Buscar por nome ou código de barras..." 
+                           value="{{ busca }}">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Lista de Produtos -->
+<div class="card">
+    <div class="card-body">
+        {% if produtos %}
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Código de Barras</th>
+                        <th>Nome do Produto</th>
+                        <th class="text-center">Saldo</th>
+                        <th class="text-end">Preço Compra</th>
+                        <th class="text-end">Preço Venda</th>
+                        <th class="text-end">Margem</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for produto in produtos %}
+                    <tr>
+                        <td><code>{{ produto.codigo_barras }}</code></td>
+                        <td>{{ produto.nome }}</td>
+                        <td class="text-center">
+                            {% if produto.saldo < 5 %}
+                            <span class="badge bg-danger">{{ "%.0f"|format(produto.saldo) }}</span>
+                            {% elif produto.saldo < 15 %}
+                            <span class="badge bg-warning">{{ "%.0f"|format(produto.saldo) }}</span>
+                            {% else %}
+                            <span class="badge bg-success">{{ "%.0f"|format(produto.saldo) }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-end">R$ {{ "%.2f"|format(produto.preco_compra) }}</td>
+                        <td class="text-end">R$ {{ "%.2f"|format(produto.preco_venda) }}</td>
+                        <td class="text-end">
+                            {% set margem = ((produto.preco_venda - produto.preco_compra) / produto.preco_compra * 100) if produto.preco_compra > 0 else 0 %}
+                            <span class="badge {% if margem >= 30 %}bg-success{% elif margem >= 15 %}bg-warning{% else %}bg-danger{% endif %}">
+                                {{ "%.1f"|format(margem) }}%
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group btn-group-sm">
+                                <a href="{{ url_for('pex3_editar_produto_dm', pex3_codigo_barras_dm=produto.codigo_barras) }}" 
+                                   class="btn btn-outline-primary" title="Editar">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="{{ url_for('pex3_ajuste_estoque_dm') }}?codigo={{ produto.codigo_barras }}" 
+                                   class="btn btn-outline-warning" title="Ajustar Estoque">
+                                    <i class="bi bi-arrow-left-right"></i>
+                                </a>
+                                <form method="POST" action="{{ url_for('pex3_excluir_produto_dm', pex3_codigo_barras_dm=produto.codigo_barras) }}" 
+                                      style="display: inline;" 
+                                      onsubmit="return confirm('Tem certeza que deseja excluir este produto?');">
+                                    <button type="submit" class="btn btn-outline-danger" title="Excluir">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="text-muted mt-3">
+            <small>Total: {{ produtos|length }} produto(s)</small>
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <i class="bi bi-inbox fs-1 text-muted"></i>
+            <p class="text-muted mt-2">Nenhum produto encontrado.</p>
+            <a href="{{ url_for('pex3_cadastrar_produto_dm') }}" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Cadastrar Produto
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

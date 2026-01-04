@@ -1,0 +1,113 @@
+{% extends "estoque/base_estoque.html" %}
+
+{% block title %}Detalhes da Compra #{{ compra.id }} - Sistema de Estoque{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2><i class="bi bi-cart-plus"></i> Detalhes da Compra #{{ compra.id }}</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <!-- Informações da Compra -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="bi bi-info-circle"></i> Informações da Compra
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <strong>Data:</strong><br>
+                        {{ compra.data }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <strong>Fornecedor:</strong><br>
+                        {{ compra.fornecedor or '-' }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <strong>Número da NF:</strong><br>
+                        {{ compra.numero_nf or '-' }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <strong>Observação:</strong><br>
+                        {{ compra.observacao or '-' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Itens da Compra -->
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-list-check"></i> Itens da Compra
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Produto</th>
+                                <th class="text-center">Qtd</th>
+                                <th class="text-end">Preço Unit.</th>
+                                <th class="text-end">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in compra.itens %}
+                            <tr>
+                                <td><code>{{ item.codigo_barras }}</code></td>
+                                <td>{{ item.nome_produto }}</td>
+                                <td class="text-center">{{ item.quantidade }}</td>
+                                <td class="text-end">R$ {{ "%.2f"|format(item.preco_unitario) }}</td>
+                                <td class="text-end">R$ {{ "%.2f"|format(item.subtotal) }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr class="table-light">
+                                <td colspan="4" class="text-end fw-bold">Total:</td>
+                                <td class="text-end fw-bold text-primary">R$ {{ "%.2f"|format(compra.valor_total) }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Resumo -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-calculator"></i> Resumo
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Quantidade de Itens:</span>
+                    <strong>{{ compra.itens|length }}</strong>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Total de Unidades:</span>
+                    <strong>{{ compra.itens|sum(attribute='quantidade') }}</strong>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <span>Valor Total:</span>
+                    <strong class="text-primary fs-4">R$ {{ "%.2f"|format(compra.valor_total) }}</strong>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="{{ url_for('pex3_listar_compras_dm') }}" class="btn btn-secondary w-100">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+        </div>
+        
+        <div class="alert alert-info mt-3">
+            <i class="bi bi-info-circle"></i> 
+            Esta compra gerou um lançamento de despesa no sistema financeiro.
+        </div>
+    </div>
+</div>
+{% endblock %}

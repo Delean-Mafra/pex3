@@ -1,0 +1,76 @@
+{% extends "estoque/base_estoque.html" %}
+
+{% block title %}{{ acao }} Produto - Sistema de Estoque{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2><i class="bi bi-{{ 'pencil' if produto else 'plus-square' }}"></i> {{ acao }} Produto</h2>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <form method="POST">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Código de Barras <span class="text-danger">*</span></label>
+                            <input type="text" name="codigo_barras" class="form-control" 
+                                   value="{{ produto.codigo_barras if produto else '' }}"
+                                   {% if produto %}readonly{% endif %}
+                                   required autofocus>
+                            {% if produto %}
+                            <small class="text-muted">O código de barras não pode ser alterado.</small>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Nome do Produto <span class="text-danger">*</span></label>
+                            <input type="text" name="nome" class="form-control" 
+                                   value="{{ produto.nome if produto else '' }}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Preço de Compra <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">R$</span>
+                                <input type="number" name="preco_compra" class="form-control" 
+                                       step="0.01" min="0" 
+                                       value="{{ '%.2f'|format(produto.preco_compra) if produto else '' }}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Preço de Venda <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">R$</span>
+                                <input type="number" name="preco_venda" class="form-control" 
+                                       step="0.01" min="0" 
+                                       value="{{ '%.2f'|format(produto.preco_venda) if produto else '' }}" required>
+                            </div>
+                        </div>
+                        {% if not produto %}
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Saldo Inicial</label>
+                            <input type="number" name="saldo" class="form-control" 
+                                   step="1" min="0" value="0">
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <hr class="my-4">
+                    
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('pex3_listar_produtos_dm') }}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Voltar
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-check-lg"></i> Salvar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

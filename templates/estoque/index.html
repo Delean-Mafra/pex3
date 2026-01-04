@@ -1,1 +1,211 @@
+{% extends "estoque/base_estoque.html" %}
 
+{% block title %}Dashboard - Sistema de Estoque{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2><i class="bi bi-speedometer2"></i> Dashboard</h2>
+</div>
+
+<!-- Cards de Estatísticas -->
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card stat-card position-relative">
+            <div class="card-body">
+                <div class="stat-value">{{ total_produtos }}</div>
+                <div class="stat-label">Produtos Cadastrados</div>
+                <i class="bi bi-box"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card stat-card success position-relative">
+            <div class="card-body">
+                <div class="stat-value">{{ "%.0f"|format(total_itens) }}</div>
+                <div class="stat-label">Itens em Estoque</div>
+                <i class="bi bi-boxes"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card stat-card warning position-relative">
+            <div class="card-body">
+                <div class="stat-value">R$ {{ "%.2f"|format(valor_estoque) }}</div>
+                <div class="stat-label">Valor do Estoque (Custo)</div>
+                <i class="bi bi-currency-dollar"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card stat-card danger position-relative">
+            <div class="card-body">
+                <div class="stat-value">R$ {{ "%.2f"|format(valor_venda_potencial) }}</div>
+                <div class="stat-label">Valor Potencial (Venda)</div>
+                <i class="bi bi-graph-up-arrow"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Produtos com Estoque Baixo -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-exclamation-triangle text-warning"></i> Produtos com Estoque Baixo</span>
+                <span class="badge bg-warning">{{ produtos_baixo_estoque|length }}</span>
+            </div>
+            <div class="card-body">
+                {% if produtos_baixo_estoque %}
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th class="text-center">Saldo</th>
+                                <th class="text-end">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for produto in produtos_baixo_estoque[:5] %}
+                            <tr>
+                                <td>{{ produto.nome }}</td>
+                                <td class="text-center">
+                                    <span class="badge bg-danger">{{ "%.0f"|format(produto.saldo) }}</span>
+                                </td>
+                                <td class="text-end">
+                                    <a href="{{ url_for('pex3_ajuste_estoque_dm') }}?codigo={{ produto.codigo_barras }}" 
+                                       class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-plus-circle"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center mb-0">
+                    <i class="bi bi-check-circle text-success"></i> Todos os produtos estão com estoque adequado!
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Ações Rápidas -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-lightning"></i> Ações Rápidas
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <a href="{{ url_for('pex3_nova_venda_dm') }}" class="btn btn-success w-100 py-3">
+                            <i class="bi bi-cart-check fs-4 d-block mb-1"></i>
+                            Nova Venda
+                        </a>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <a href="{{ url_for('pex3_nova_compra_dm') }}" class="btn btn-primary w-100 py-3">
+                            <i class="bi bi-cart-plus fs-4 d-block mb-1"></i>
+                            Nova Compra
+                        </a>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <a href="{{ url_for('pex3_cadastrar_produto_dm') }}" class="btn btn-info text-white w-100 py-3">
+                            <i class="bi bi-plus-square fs-4 d-block mb-1"></i>
+                            Novo Produto
+                        </a>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <a href="{{ url_for('pex3_ajuste_estoque_dm') }}" class="btn btn-warning w-100 py-3">
+                            <i class="bi bi-arrow-left-right fs-4 d-block mb-1"></i>
+                            Ajustar Estoque
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Últimas Vendas -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-cart-check text-success"></i> Últimas Vendas</span>
+                <a href="{{ url_for('pex3_listar_vendas_dm') }}" class="btn btn-sm btn-outline-primary">Ver todas</a>
+            </div>
+            <div class="card-body">
+                {% if ultimas_vendas %}
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Data</th>
+                                <th>Cliente</th>
+                                <th class="text-end">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for venda in ultimas_vendas %}
+                            <tr>
+                                <td>{{ venda.id }}</td>
+                                <td>{{ venda.data[:10] }}</td>
+                                <td>{{ venda.cliente or '-' }}</td>
+                                <td class="text-end text-success fw-bold">R$ {{ "%.2f"|format(venda.valor_total) }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center mb-0">Nenhuma venda registrada ainda.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Últimas Compras -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-cart-plus text-primary"></i> Últimas Compras</span>
+                <a href="{{ url_for('pex3_listar_compras_dm') }}" class="btn btn-sm btn-outline-primary">Ver todas</a>
+            </div>
+            <div class="card-body">
+                {% if ultimas_compras %}
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Data</th>
+                                <th>Fornecedor</th>
+                                <th class="text-end">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for compra in ultimas_compras %}
+                            <tr>
+                                <td>{{ compra.id }}</td>
+                                <td>{{ compra.data[:10] }}</td>
+                                <td>{{ compra.fornecedor or '-' }}</td>
+                                <td class="text-end text-primary fw-bold">R$ {{ "%.2f"|format(compra.valor_total) }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center mb-0">Nenhuma compra registrada ainda.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
