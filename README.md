@@ -351,5 +351,6 @@ Para mais informações: [LICENSE.md](LICENSE.md)
 ---
 
 <p align="center">
-  <strong>Copyright © 2025 Delean Mafra - Todos os direitos reservados.</strong>
+  <strong>Copyright © 2026 Delean Mafra - Todos os direitos reservados.</strong>
+
 </p>
