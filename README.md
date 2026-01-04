@@ -346,11 +346,10 @@ Para mais informações: [LICENSE.md](LICENSE.md)
 
 ## 🔗 DOI
 
-**DOI:** [https://doi.org/10.5281/zenodo.18122476](https://doi.org/10.5281/zenodo.18122476)
+**DOI:** [https://doi.org/10.5281/zenodo.18143148](https://doi.org/10.5281/zenodo.18143148)
 
 ---
 
 <p align="center">
-  <strong>Copyright © 2026 Delean Mafra - Todos os direitos reservados.</strong>
-
+  <strong>Copyright © 2025 Delean Mafra - Todos os direitos reservados.</strong>
 </p>

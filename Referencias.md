@@ -2,7 +2,7 @@
 
 ## Identificador Digital (DOI)
 
-**DOI:** [https://doi.org/10.5281/zenodo.18122476](https://doi.org/10.5281/zenodo.18122476)
+**DOI:** [https://doi.org/10.5281/zenodo.18143148](https://doi.org/10.5281/zenodo.18143148)
 
 ## Estilo ABNT (NBR 6023:2018)
 

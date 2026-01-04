@@ -265,7 +265,7 @@ Compress-Archive -Path dist\* -DestinationPath SistemaPEX3.zip
 
 ---
 
-**DOI:** [https://doi.org/10.5281/zenodo.18122476](https://doi.org/10.5281/zenodo.18122476)
+**DOI:** [https://doi.org/10.5281/zenodo.18143148](https://doi.org/10.5281/zenodo.18143148)
 
 **Copyright © Delean Mafra - 2025**  
 **Licença: CC BY-NC 4.0**
