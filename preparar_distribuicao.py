@@ -111,7 +111,7 @@ Se esquecer a senha:
 Para mais informações, consulte a documentação completa do projeto.
 
 ---
-**Copyright © Delean Mafra - 2025**
+**Copyright © Delean Mafra - 2026**
 **Licença: CC BY-NC 4.0**
 """
     

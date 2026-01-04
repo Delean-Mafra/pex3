@@ -344,6 +344,12 @@ Para mais informações: [LICENSE.md](LICENSE.md)
 
 ---
 
+## 🔗 DOI
+
+**DOI:** [https://doi.org/10.5281/zenodo.18122476](https://doi.org/10.5281/zenodo.18122476)
+
+---
+
 <p align="center">
   <strong>Copyright © 2025 Delean Mafra - Todos os direitos reservados.</strong>
 </p>

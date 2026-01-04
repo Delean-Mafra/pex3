@@ -201,5 +201,6 @@ Este projeto foi desenvolvido como atividade de Extensão Universitária (Pex II
 
 **Última atualização:** Dezembro de 2025
 
+**DOI:** [https://doi.org/10.5281/zenodo.18122476](https://doi.org/10.5281/zenodo.18122476)
 
 **Copyright © Delean Mafra - Todos os direitos reservados.**

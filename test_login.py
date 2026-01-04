@@ -8,9 +8,9 @@ import os
 import json
 import hashlib
 
-def hash_password(password):
+def pex3_hash_password_dm(pex3_password_dm):
     """Criptografa a senha usando SHA256"""
-    return hashlib.sha256(password.encode()).hexdigest()
+    return hashlib.sha256(pex3_password_dm.encode()).hexdigest()
 
 # Testar criação de credenciais
 print("=" * 50)
@@ -18,32 +18,32 @@ print("🧪 Teste do Sistema de Autenticação")
 print("=" * 50)
 
 # Criar credenciais de teste
-credenciais = {
+pex3_credenciais_dm = {
     'username': 'admin',
-    'password': hash_password('admin')
+    'password': pex3_hash_password_dm('admin')
 }
 
 print("\n✅ Credenciais de teste criadas:")
-print(f"   Usuário: {credenciais['username']}")
-print(f"   Hash da senha: {credenciais['password'][:20]}...")
+print(f"   Usuário: {pex3_credenciais_dm['username']}")
+print(f"   Hash da senha: {pex3_credenciais_dm['password'][:20]}...")
 
 # Verificar hash
-senha_teste = 'admin'
-hash_teste = hash_password(senha_teste)
+pex3_senha_teste_dm = 'admin'
+pex3_hash_teste_dm = pex3_hash_password_dm(pex3_senha_teste_dm)
 
 print(f"\n🔐 Teste de verificação:")
-print(f"   Senha: {senha_teste}")
-print(f"   Hash gerado: {hash_teste[:20]}...")
-print(f"   Match: {hash_teste == credenciais['password']}")
+print(f"   Senha: {pex3_senha_teste_dm}")
+print(f"   Hash gerado: {pex3_hash_teste_dm[:20]}...")
+print(f"   Match: {pex3_hash_teste_dm == pex3_credenciais_dm['password']}")
 
 # Testar senha incorreta
-senha_errada = 'senha_errada'
-hash_errado = hash_password(senha_errada)
+pex3_senha_errada_dm = 'senha_errada'
+pex3_hash_errado_dm = pex3_hash_password_dm(pex3_senha_errada_dm)
 
 print(f"\n❌ Teste com senha incorreta:")
-print(f"   Senha: {senha_errada}")
-print(f"   Hash gerado: {hash_errado[:20]}...")
-print(f"   Match: {hash_errado == credenciais['password']}")
+print(f"   Senha: {pex3_senha_errada_dm}")
+print(f"   Hash gerado: {pex3_hash_errado_dm[:20]}...")
+print(f"   Match: {pex3_hash_errado_dm == pex3_credenciais_dm['password']}")
 
 print("\n" + "=" * 50)
 print("✅ Todos os testes passaram!")

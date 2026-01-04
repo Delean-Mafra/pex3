@@ -4,7 +4,6 @@ Executa três sistemas Flask em threads separadas:
 - Sistema de Login (porta 5002)
 - Sistema Financeiro (porta 5000)
 - Sistema de Estoque (porta 5001)
-
 Funciona corretamente quando compilado com PyInstaller.
 """
 
@@ -25,7 +24,7 @@ from flask import Flask, render_template, render_template_string, request, redir
 # CONFIGURAÇÃO DE DIRETÓRIOS PARA PYINSTALLER
 # ============================================================================
 
-def get_base_dir():
+def pex3_get_base_dir_dm():
     """Retorna o diretório base correto para PyInstaller ou execução normal"""
     if getattr(sys, 'frozen', False):
         # Executando como executável compilado
@@ -34,7 +33,7 @@ def get_base_dir():
         # Executando como script Python
         return os.path.dirname(os.path.abspath(__file__))
 
-def get_resource_dir():
+def pex3_get_resource_dir_dm():
     """Retorna o diretório de recursos (templates) para PyInstaller"""
     if getattr(sys, 'frozen', False):
         # PyInstaller extrai para _MEIPASS
@@ -42,71 +41,71 @@ def get_resource_dir():
     else:
         return os.path.dirname(os.path.abspath(__file__))
 
-BASE_DIR = get_base_dir()
-RESOURCE_DIR = get_resource_dir()
+pex3_BASE_DIR_dm = pex3_get_base_dir_dm()
+pex3_RESOURCE_DIR_dm = pex3_get_resource_dir_dm()
 
 # Arquivos de dados (sempre no diretório do executável para persistência)
-CREDENTIALS_FILE = os.path.join(BASE_DIR, 'credentials.enc')
-DB_FILE = os.path.join(BASE_DIR, 'database.json')
-PRODUTOS_CSV = os.path.join(BASE_DIR, 'produtos.csv')
-ESTOQUE_DB = os.path.join(BASE_DIR, 'estoque_db.json')
+pex3_CREDENTIALS_FILE_dm = os.path.join(pex3_BASE_DIR_dm, 'credentials.enc')
+pex3_DB_FILE_dm = os.path.join(pex3_BASE_DIR_dm, 'database.json')
+pex3_PRODUTOS_CSV_dm = os.path.join(pex3_BASE_DIR_dm, 'produtos.csv')
+pex3_ESTOQUE_DB_dm = os.path.join(pex3_BASE_DIR_dm, 'estoque_db.json')
 
-print(f"📁 Diretório base: {BASE_DIR}")
-print(f"📁 Diretório recursos: {RESOURCE_DIR}")
+print(f"📁 Diretório base: {pex3_BASE_DIR_dm}")
+print(f"📁 Diretório recursos: {pex3_RESOURCE_DIR_dm}")
 
 # ============================================================================
 # APLICAÇÃO DE LOGIN (PORTA 5002)
 # ============================================================================
 
-app_login = Flask(__name__, template_folder=os.path.join(RESOURCE_DIR, 'templates'))
-app_login.secret_key = 'chave-super-secreta-mudar-em-producao-12345'
+pex3_app_login_dm = Flask(__name__, template_folder=os.path.join(pex3_RESOURCE_DIR_dm, 'templates'))
+pex3_app_login_dm.secret_key = 'chave-super-secreta-mudar-em-producao-12345'
 
 # Variáveis globais
-sistemas_iniciados = False
-navegador_aberto = False
+pex3_sistemas_iniciados_dm = False
+pex3_navegador_aberto_dm = False
 
-def hash_password(password):
+def pex3_hash_password_dm(pex3_password_dm):
     """Criptografa a senha usando SHA256"""
-    return hashlib.sha256(password.encode()).hexdigest()
+    return hashlib.sha256(pex3_password_dm.encode()).hexdigest()
 
-def inicializar_credenciais():
+def pex3_inicializar_credenciais_dm():
     """Cria credenciais padrão se não existirem"""
-    if not os.path.exists(CREDENTIALS_FILE):
-        credenciais = {
+    if not os.path.exists(pex3_CREDENTIALS_FILE_dm):
+        pex3_credenciais_dm = {
             'username': 'admin',
-            'password': hash_password('admin')
+            'password': pex3_hash_password_dm('admin')
         }
-        with open(CREDENTIALS_FILE, 'w') as f:
-            json.dump(credenciais, f)
+        with open(pex3_CREDENTIALS_FILE_dm, 'w') as f:
+            json.dump(pex3_credenciais_dm, f)
         print("✅ Credenciais padrão criadas: admin/admin")
         print("⚠️  IMPORTANTE: Altere a senha no primeiro acesso!")
 
-def carregar_credenciais():
+def pex3_carregar_credenciais_dm():
     """Carrega as credenciais do arquivo criptografado"""
-    if os.path.exists(CREDENTIALS_FILE):
-        with open(CREDENTIALS_FILE, 'r') as f:
+    if os.path.exists(pex3_CREDENTIALS_FILE_dm):
+        with open(pex3_CREDENTIALS_FILE_dm, 'r') as f:
             return json.load(f)
     return None
 
-def salvar_credenciais(username, password):
+def pex3_salvar_credenciais_dm(pex3_username_dm, pex3_password_dm):
     """Salva as credenciais criptografadas"""
-    credenciais = {
-        'username': username,
-        'password': hash_password(password)
+    pex3_credenciais_dm = {
+        'username': pex3_username_dm,
+        'password': pex3_hash_password_dm(pex3_password_dm)
     }
-    with open(CREDENTIALS_FILE, 'w') as f:
-        json.dump(credenciais, f)
+    with open(pex3_CREDENTIALS_FILE_dm, 'w') as f:
+            json.dump(pex3_credenciais_dm, f)
 
-def verificar_credenciais(username, password):
+def pex3_verificar_credenciais_dm(pex3_username_dm, pex3_password_dm):
     """Verifica se as credenciais estão corretas"""
-    credenciais = carregar_credenciais()
-    if credenciais:
-        return (credenciais['username'] == username and 
-                credenciais['password'] == hash_password(password))
+    pex3_credenciais_dm = pex3_carregar_credenciais_dm()
+    if pex3_credenciais_dm:
+        return (pex3_credenciais_dm['username'] == pex3_username_dm and 
+                pex3_credenciais_dm['password'] == pex3_hash_password_dm(pex3_password_dm))
     return False
 
 # Templates HTML embutidos
-LOGIN_TEMPLATE = '''
+pex3_LOGIN_TEMPLATE_dm = '''
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -171,14 +170,14 @@ LOGIN_TEMPLATE = '''
         </form>
         <div class="footer">
             <p>Credenciais padrão: admin/admin</p>
-            <p>Copyright © Delean Mafra - 2025</p>
+            <p>Copyright © Delean Mafra - 2026</p>
         </div>
     </div>
 </body>
 </html>
 '''
 
-DASHBOARD_TEMPLATE = '''
+pex3_DASHBOARD_TEMPLATE_dm = '''
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -228,8 +227,8 @@ DASHBOARD_TEMPLATE = '''
             <h1>🎯 Dashboard - PEX III</h1>
             <div class="user-info">
                 <span>👤 {{ username }}</span>
-                <a href="{{ url_for('alterar_senha') }}" class="btn btn-secondary">Alterar Senha</a>
-                <a href="{{ url_for('logout') }}" class="btn btn-danger">Sair</a>
+                <a href="{{ url_for('pex3_alterar_senha_dm') }}" class="btn btn-secondary">Alterar Senha</a>
+                <a href="{{ url_for('pex3_logout_dm') }}" class="btn btn-danger">Sair</a>
             </div>
         </div>
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -258,7 +257,7 @@ DASHBOARD_TEMPLATE = '''
 </html>
 '''
 
-CHANGE_PASSWORD_TEMPLATE = '''
+pex3_CHANGE_PASSWORD_TEMPLATE_dm = '''
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -319,83 +318,83 @@ CHANGE_PASSWORD_TEMPLATE = '''
                 <input type="password" id="confirm_password" name="confirm_password" required>
             </div>
             <button type="submit" class="btn btn-primary">Alterar Senha</button>
-            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancelar</a>
+            <a href="{{ url_for('pex3_dashboard_dm') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </body>
 </html>
 '''
 
-@app_login.route('/', methods=['GET', 'POST'])
-def login():
-    global sistemas_iniciados
+@pex3_app_login_dm.route('/', methods=['GET', 'POST'])
+def pex3_login_dm():
+    global pex3_sistemas_iniciados_dm
     if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
+        pex3_username_dm = request.form.get('username')
+        pex3_password_dm = request.form.get('password')
         
-        if verificar_credenciais(username, password):
+        if pex3_verificar_credenciais_dm(pex3_username_dm, pex3_password_dm):
             session['logged_in'] = True
-            session['username'] = username
+            session['username'] = pex3_username_dm
             flash('Login realizado com sucesso!', 'success')
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('pex3_dashboard_dm'))
         else:
             flash('Usuário ou senha incorretos!', 'error')
     
-    if not os.path.exists(CREDENTIALS_FILE):
+    if not os.path.exists(pex3_CREDENTIALS_FILE_dm):
         flash('Primeira execução! Use: admin/admin', 'warning')
     
-    return render_template_string(LOGIN_TEMPLATE)
+    return render_template_string(pex3_LOGIN_TEMPLATE_dm)
 
-@app_login.route('/dashboard')
-def dashboard():
+@pex3_app_login_dm.route('/dashboard')
+def pex3_dashboard_dm():
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
-    return render_template_string(DASHBOARD_TEMPLATE, username=session.get('username'))
+        return redirect(url_for('pex3_login_dm'))
+    return render_template_string(pex3_DASHBOARD_TEMPLATE_dm, username=session.get('username'))
 
-@app_login.route('/alterar-senha', methods=['GET', 'POST'])
-def alterar_senha():
+@pex3_app_login_dm.route('/alterar-senha', methods=['GET', 'POST'])
+def pex3_alterar_senha_dm():
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
+        return redirect(url_for('pex3_login_dm'))
     
     if request.method == 'POST':
-        current_password = request.form.get('current_password')
-        new_password = request.form.get('new_password')
-        confirm_password = request.form.get('confirm_password')
+        pex3_current_password_dm = request.form.get('current_password')
+        pex3_new_password_dm = request.form.get('new_password')
+        pex3_confirm_password_dm = request.form.get('confirm_password')
         
-        if not verificar_credenciais(session.get('username'), current_password):
+        if not pex3_verificar_credenciais_dm(session.get('username'), pex3_current_password_dm):
             flash('Senha atual incorreta!', 'error')
-            return render_template_string(CHANGE_PASSWORD_TEMPLATE)
+            return render_template_string(pex3_CHANGE_PASSWORD_TEMPLATE_dm)
         
-        if new_password != confirm_password:
+        if pex3_new_password_dm != pex3_confirm_password_dm:
             flash('As senhas não coincidem!', 'error')
-            return render_template_string(CHANGE_PASSWORD_TEMPLATE)
+            return render_template_string(pex3_CHANGE_PASSWORD_TEMPLATE_dm)
         
-        if len(new_password) < 4:
+        if len(pex3_new_password_dm) < 4:
             flash('A senha deve ter no mínimo 4 caracteres!', 'error')
-            return render_template_string(CHANGE_PASSWORD_TEMPLATE)
+            return render_template_string(pex3_CHANGE_PASSWORD_TEMPLATE_dm)
         
-        salvar_credenciais(session.get('username'), new_password)
+        pex3_salvar_credenciais_dm(session.get('username'), pex3_new_password_dm)
         flash('Senha alterada com sucesso!', 'success')
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('pex3_dashboard_dm'))
     
-    return render_template_string(CHANGE_PASSWORD_TEMPLATE)
+    return render_template_string(pex3_CHANGE_PASSWORD_TEMPLATE_dm)
 
-@app_login.route('/logout')
-def logout():
+@pex3_app_login_dm.route('/logout')
+def pex3_logout_dm():
     session.clear()
     flash('Logout realizado com sucesso!', 'success')
-    return redirect(url_for('login'))
+    return redirect(url_for('pex3_login_dm'))
 
 
 # ============================================================================
 # APLICAÇÃO FINANCEIRO (PORTA 5000)
 # ============================================================================
 
-app_financeiro = Flask(__name__, template_folder=os.path.join(RESOURCE_DIR, 'templates'))
+pex3_app_financeiro_dm = Flask(__name__, template_folder=os.path.join(pex3_RESOURCE_DIR_dm, 'templates'))
 
-def init_financeiro_db():
-    if not os.path.exists(DB_FILE):
-        data = {
+def pex3_init_financeiro_db_dm():
+    if not os.path.exists(pex3_DB_FILE_dm):
+        pex3_data_dm = {
             "transactions": [],
             "categories": [
                 {"nome": "Salário", "tipo": "receita"},
@@ -407,74 +406,74 @@ def init_financeiro_db():
             ],
             "payment_methods": ["PIX", "Cartão", "Dinheiro", "Boleto", "Outros"]
         }
-        with open(DB_FILE, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4, ensure_ascii=False)
+        with open(pex3_DB_FILE_dm, 'w', encoding='utf-8') as f:
+            json.dump(pex3_data_dm, f, indent=4, ensure_ascii=False)
 
-def load_financeiro_db():
-    init_financeiro_db()
-    with open(DB_FILE, 'r', encoding='utf-8') as f:
+def pex3_load_financeiro_db_dm():
+    pex3_init_financeiro_db_dm()
+    with open(pex3_DB_FILE_dm, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-def save_financeiro_db(data):
-    with open(DB_FILE, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=4, ensure_ascii=False)
+def pex3_save_financeiro_db_dm(pex3_data_dm):
+    with open(pex3_DB_FILE_dm, 'w', encoding='utf-8') as f:
+        json.dump(pex3_data_dm, f, indent=4, ensure_ascii=False)
 
-def filtrar_financeiro_por_data(transacoes, data_inicio, data_fim):
-    if not data_inicio and not data_fim:
-        return transacoes
+def pex3_filtrar_financeiro_por_data_dm(pex3_transacoes_dm, pex3_data_inicio_dm, pex3_data_fim_dm):
+    if not pex3_data_inicio_dm and not pex3_data_fim_dm:
+        return pex3_transacoes_dm
 
-    filtradas = []
-    for t in transacoes:
-        data_t = t.get('data_gasto', '')  # Formato YYYY-MM-DD
-        if data_inicio and data_t < data_inicio:
+    pex3_filtradas_dm = []
+    for pex3_t_dm in pex3_transacoes_dm:
+        pex3_data_t_dm = pex3_t_dm.get('data_gasto', '')  # Formato YYYY-MM-DD
+        if pex3_data_inicio_dm and pex3_data_t_dm < pex3_data_inicio_dm:
             continue
-        if data_fim and data_t > data_fim:
+        if pex3_data_fim_dm and pex3_data_t_dm > pex3_data_fim_dm:
             continue
-        filtradas.append(t)
-    return filtradas
+        pex3_filtradas_dm.append(pex3_t_dm)
+    return pex3_filtradas_dm
 
-@app_financeiro.route('/')
-def financeiro_index():
-    db = load_financeiro_db()
-    data_inicio = request.args.get('data_inicio', '')
-    data_fim = request.args.get('data_fim', '')
+@pex3_app_financeiro_dm.route('/')
+def pex3_financeiro_index_dm():
+    pex3_db_dm = pex3_load_financeiro_db_dm()
+    pex3_data_inicio_dm = request.args.get('data_inicio', '')
+    pex3_data_fim_dm = request.args.get('data_fim', '')
 
-    transacoes = filtrar_financeiro_por_data(db.get('transactions', []), data_inicio, data_fim)
-    receitas = sum(t['valor'] for t in transacoes if t.get('tipo') == 'receber')
-    despesas = sum(t['valor'] for t in transacoes if t.get('tipo') == 'pagar')
+    pex3_transacoes_dm = pex3_filtrar_financeiro_por_data_dm(pex3_db_dm.get('transactions', []), pex3_data_inicio_dm, pex3_data_fim_dm)
+    pex3_receitas_dm = sum(pex3_t_dm['valor'] for pex3_t_dm in pex3_transacoes_dm if pex3_t_dm.get('tipo') == 'receber')
+    pex3_despesas_dm = sum(pex3_t_dm['valor'] for pex3_t_dm in pex3_transacoes_dm if pex3_t_dm.get('tipo') == 'pagar')
 
     return render_template(
         'index.html',
-        receitas=receitas,
-        despesas=despesas,
-        saldo=receitas - despesas,
-        data_inicio=data_inicio,
-        data_fim=data_fim,
+        receitas=pex3_receitas_dm,
+        despesas=pex3_despesas_dm,
+        saldo=pex3_receitas_dm - pex3_despesas_dm,
+        data_inicio=pex3_data_inicio_dm,
+        data_fim=pex3_data_fim_dm,
     )
 
-@app_financeiro.route('/lancamentos')
-def financeiro_lancamentos():
-    db = load_financeiro_db()
-    data_inicio = request.args.get('data_inicio', '')
-    data_fim = request.args.get('data_fim', '')
+@pex3_app_financeiro_dm.route('/lancamentos')
+def pex3_financeiro_lancamentos_dm():
+    pex3_db_dm = pex3_load_financeiro_db_dm()
+    pex3_data_inicio_dm = request.args.get('data_inicio', '')
+    pex3_data_fim_dm = request.args.get('data_fim', '')
 
-    transacoes = filtrar_financeiro_por_data(db.get('transactions', []), data_inicio, data_fim)
-    transacoes.sort(key=lambda x: x.get('data_gasto', ''), reverse=True)
+    pex3_transacoes_dm = pex3_filtrar_financeiro_por_data_dm(pex3_db_dm.get('transactions', []), pex3_data_inicio_dm, pex3_data_fim_dm)
+    pex3_transacoes_dm.sort(key=lambda x: x.get('data_gasto', ''), reverse=True)
 
     return render_template(
         'lancamentos.html',
-        transactions=transacoes,
-        data_inicio=data_inicio,
-        data_fim=data_fim,
+        transactions=pex3_transacoes_dm,
+        data_inicio=pex3_data_inicio_dm,
+        data_fim=pex3_data_fim_dm,
     )
 
-@app_financeiro.route('/cadastrar/<tipo>', methods=['GET', 'POST'])
-def financeiro_cadastrar(tipo):
-    db = load_financeiro_db()
+@pex3_app_financeiro_dm.route('/cadastrar/<pex3_tipo_dm>', methods=['GET', 'POST'])
+def pex3_financeiro_cadastrar_dm(pex3_tipo_dm):
+    pex3_db_dm = pex3_load_financeiro_db_dm()
     if request.method == 'POST':
-        nova_transacao = {
-            "id": len(db['transactions']) + 1,
-            "tipo": tipo,
+        pex3_nova_transacao_dm = {
+            "id": len(pex3_db_dm['transactions']) + 1,
+            "tipo": pex3_tipo_dm,
             "data_gasto": request.form['data_gasto'],
             "data_criacao": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "valor": float(request.form['valor']),
@@ -482,88 +481,88 @@ def financeiro_cadastrar(tipo):
             "forma_pagamento": request.form.get('forma_pagamento', 'N/A'),
             "descricao": request.form['descricao'],
         }
-        db['transactions'].append(nova_transacao)
-        save_financeiro_db(db)
-        return redirect(url_for('financeiro_lancamentos'))
+        pex3_db_dm['transactions'].append(pex3_nova_transacao_dm)
+        pex3_save_financeiro_db_dm(pex3_db_dm)
+        return redirect(url_for('pex3_financeiro_lancamentos_dm'))
 
-    if tipo == 'receber':
-        categorias = [c['nome'] for c in db['categories'] if c['tipo'] in ['receita', 'ambos']]
+    if pex3_tipo_dm == 'receber':
+        pex3_categorias_dm = [c['nome'] for c in pex3_db_dm['categories'] if c['tipo'] in ['receita', 'ambos']]
     else:
-        categorias = [c['nome'] for c in db['categories'] if c['tipo'] in ['despesa', 'ambos']]
+        pex3_categorias_dm = [c['nome'] for c in pex3_db_dm['categories'] if c['tipo'] in ['despesa', 'ambos']]
 
     return render_template(
         'form_lancamento.html',
-        tipo=tipo,
-        categorias=categorias,
-        metodos=db['payment_methods'],
+        tipo=pex3_tipo_dm,
+        categorias=pex3_categorias_dm,
+        metodos=pex3_db_dm['payment_methods'],
     )
 
-@app_financeiro.route('/categorias', methods=['GET', 'POST'])
-def financeiro_categorias():
-    db = load_financeiro_db()
+@pex3_app_financeiro_dm.route('/categorias', methods=['GET', 'POST'])
+def pex3_financeiro_categorias_dm():
+    pex3_db_dm = pex3_load_financeiro_db_dm()
     if request.method == 'POST':
-        db['categories'].append({"nome": request.form['nome'], "tipo": request.form['tipo']})
-        save_financeiro_db(db)
-        return redirect(url_for('financeiro_categorias'))
-    return render_template('categorias.html', categorias=db['categories'])
+        pex3_db_dm['categories'].append({"nome": request.form['nome'], "tipo": request.form['tipo']})
+        pex3_save_financeiro_db_dm(pex3_db_dm)
+        return redirect(url_for('pex3_financeiro_categorias_dm'))
+    return render_template('categorias.html', categorias=pex3_db_dm['categories'])
 
-@app_financeiro.route('/analytics')
-def financeiro_analytics():
-    db = load_financeiro_db()
-    data_inicio = request.args.get('data_inicio', '')
-    data_fim = request.args.get('data_fim', '')
+@pex3_app_financeiro_dm.route('/analytics')
+def pex3_financeiro_analytics_dm():
+    pex3_db_dm = pex3_load_financeiro_db_dm()
+    pex3_data_inicio_dm = request.args.get('data_inicio', '')
+    pex3_data_fim_dm = request.args.get('data_fim', '')
 
-    transactions = filtrar_financeiro_por_data(db.get('transactions', []), data_inicio, data_fim)
-    transactions.sort(key=lambda x: x.get('data_gasto', ''))
+    pex3_transactions_dm = pex3_filtrar_financeiro_por_data_dm(pex3_db_dm.get('transactions', []), pex3_data_inicio_dm, pex3_data_fim_dm)
+    pex3_transactions_dm.sort(key=lambda x: x.get('data_gasto', ''))
 
-    gastos_por_categoria = defaultdict(float)
-    mensal_rec_desp = defaultdict(lambda: {"receita": 0, "despesa": 0})
-    evolucao_datas = []
-    evolucao_saldo = []
-    saldo_acumulado = 0
-    pagamentos_receita_data = defaultdict(float)
-    mensal_categoria = defaultdict(lambda: defaultdict(float))
+    pex3_gastos_por_categoria_dm = defaultdict(float)
+    pex3_mensal_rec_desp_dm = defaultdict(lambda: {"receita": 0, "despesa": 0})
+    pex3_evolucao_datas_dm = []
+    pex3_evolucao_saldo_dm = []
+    pex3_saldo_acumulado_dm = 0
+    pex3_pagamentos_receita_data_dm = defaultdict(float)
+    pex3_mensal_categoria_dm = defaultdict(lambda: defaultdict(float))
 
-    for t in transactions:
-        data_dt = t['data_gasto']
-        mes_ano = data_dt[:7]
-        valor = t['valor']
+    for pex3_t_dm in pex3_transactions_dm:
+        pex3_data_dt_dm = pex3_t_dm['data_gasto']
+        pex3_mes_ano_dm = pex3_data_dt_dm[:7]
+        pex3_valor_dm = pex3_t_dm['valor']
 
-        if t['tipo'] == 'receber':
-            saldo_acumulado += valor
-            mensal_rec_desp[mes_ano]["receita"] += valor
-            pagamentos_receita_data[t['forma_pagamento']] += valor
+        if pex3_t_dm['tipo'] == 'receber':
+            pex3_saldo_acumulado_dm += pex3_valor_dm
+            pex3_mensal_rec_desp_dm[pex3_mes_ano_dm]["receita"] += pex3_valor_dm
+            pex3_pagamentos_receita_data_dm[pex3_t_dm['forma_pagamento']] += pex3_valor_dm
         else:
-            saldo_acumulado -= valor
-            mensal_rec_desp[mes_ano]["despesa"] += valor
-            gastos_por_categoria[t['categoria']] += valor
-            mensal_categoria[mes_ano][t['categoria']] += valor
+            pex3_saldo_acumulado_dm -= pex3_valor_dm
+            pex3_mensal_rec_desp_dm[pex3_mes_ano_dm]["despesa"] += pex3_valor_dm
+            pex3_gastos_por_categoria_dm[pex3_t_dm['categoria']] += pex3_valor_dm
+            pex3_mensal_categoria_dm[pex3_mes_ano_dm][pex3_t_dm['categoria']] += pex3_valor_dm
 
-        evolucao_datas.append(data_dt)
-        evolucao_saldo.append(saldo_acumulado)
+        pex3_evolucao_datas_dm.append(pex3_data_dt_dm)
+        pex3_evolucao_saldo_dm.append(pex3_saldo_acumulado_dm)
 
-    meses_ordenados = sorted(mensal_rec_desp.keys())
-    todas_categorias_gastos = list(gastos_por_categoria.keys())
-    dados_mensais_cat = {
-        cat: [mensal_categoria[mes][cat] for mes in meses_ordenados]
-        for cat in todas_categorias_gastos
+    pex3_meses_ordenados_dm = sorted(pex3_mensal_rec_desp_dm.keys())
+    pex3_todas_categorias_gastos_dm = list(pex3_gastos_por_categoria_dm.keys())
+    pex3_dados_mensais_cat_dm = {
+        pex3_cat_dm: [pex3_mensal_categoria_dm[pex3_mes_dm][pex3_cat_dm] for pex3_mes_dm in pex3_meses_ordenados_dm]
+        for pex3_cat_dm in pex3_todas_categorias_gastos_dm
     }
 
     return render_template(
         'analytics.html',
-        cat_labels=list(gastos_por_categoria.keys()),
-        cat_values=list(gastos_por_categoria.values()),
-        pag_labels=list(pagamentos_receita_data.keys()),
-        pag_values=list(pagamentos_receita_data.values()),
-        meses_labels=meses_ordenados,
-        mensal_receitas=[mensal_rec_desp[m]["receita"] for m in meses_ordenados],
-        mensal_despesas=[mensal_rec_desp[m]["despesa"] for m in meses_ordenados],
-        evolucao_datas=evolucao_datas,
-        evolucao_saldo=evolucao_saldo,
-        dados_mensais_cat=dados_mensais_cat,
-        categorias_lista=todas_categorias_gastos,
-        data_inicio=data_inicio,
-        data_fim=data_fim,
+        cat_labels=list(pex3_gastos_por_categoria_dm.keys()),
+        cat_values=list(pex3_gastos_por_categoria_dm.values()),
+        pag_labels=list(pex3_pagamentos_receita_data_dm.keys()),
+        pag_values=list(pex3_pagamentos_receita_data_dm.values()),
+        meses_labels=pex3_meses_ordenados_dm,
+        mensal_receitas=[pex3_mensal_rec_desp_dm[pex3_m_dm]["receita"] for pex3_m_dm in pex3_meses_ordenados_dm],
+        mensal_despesas=[pex3_mensal_rec_desp_dm[pex3_m_dm]["despesa"] for pex3_m_dm in pex3_meses_ordenados_dm],
+        evolucao_datas=pex3_evolucao_datas_dm,
+        evolucao_saldo=pex3_evolucao_saldo_dm,
+        dados_mensais_cat=pex3_dados_mensais_cat_dm,
+        categorias_lista=pex3_todas_categorias_gastos_dm,
+        data_inicio=pex3_data_inicio_dm,
+        data_fim=pex3_data_fim_dm,
     )
 
 
@@ -571,276 +570,276 @@ def financeiro_analytics():
 # APLICAÇÃO ESTOQUE (PORTA 5001)
 # ============================================================================
 
-app_estoque = Flask(__name__, template_folder=os.path.join(RESOURCE_DIR, 'templates'))
-app_estoque.secret_key = 'estoque_secret_key_2025'
+pex3_app_estoque_dm = Flask(__name__, template_folder=os.path.join(pex3_RESOURCE_DIR_dm, 'templates'))
+pex3_app_estoque_dm.secret_key = 'estoque_secret_key_2025'
 
-def init_produtos_csv():
-    if not os.path.exists(PRODUTOS_CSV):
-        with open(PRODUTOS_CSV, 'w', newline='', encoding='utf-8') as f:
-            writer = csv.writer(f, delimiter=';')
-            writer.writerow(['codigo_barras', 'nome', 'saldo', 'preco_venda', 'preco_compra'])
-            writer.writerow(['7891234567890', 'Produto Exemplo 1', '10', '25.90', '15.50'])
-            writer.writerow(['7891234567891', 'Produto Exemplo 2', '5', '49.90', '30.00'])
+def pex3_init_produtos_csv_dm():
+    if not os.path.exists(pex3_PRODUTOS_CSV_dm):
+        with open(pex3_PRODUTOS_CSV_dm, 'w', newline='', encoding='utf-8') as f:
+            pex3_writer_dm = csv.writer(f, delimiter=';')
+            pex3_writer_dm.writerow(['codigo_barras', 'nome', 'saldo', 'preco_venda', 'preco_compra'])
+            pex3_writer_dm.writerow(['7891234567890', 'Produto Exemplo 1', '10', '25.90', '15.50'])
+            pex3_writer_dm.writerow(['7891234567891', 'Produto Exemplo 2', '5', '49.90', '30.00'])
 
-def init_estoque_db():
-    if not os.path.exists(ESTOQUE_DB):
-        data = {"movimentacoes": [], "vendas": [], "compras": []}
-        with open(ESTOQUE_DB, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4, ensure_ascii=False)
+def pex3_init_estoque_db_dm():
+    if not os.path.exists(pex3_ESTOQUE_DB_dm):
+        pex3_data_dm = {"movimentacoes": [], "vendas": [], "compras": []}
+        with open(pex3_ESTOQUE_DB_dm, 'w', encoding='utf-8') as f:
+            json.dump(pex3_data_dm, f, indent=4, ensure_ascii=False)
 
-def load_produtos():
-    produtos = []
-    if os.path.exists(PRODUTOS_CSV):
-        with open(PRODUTOS_CSV, 'r', encoding='utf-8') as f:
-            reader = csv.DictReader(f, delimiter=';')
-            for row in reader:
-                row['saldo'] = int(row['saldo'])
-                row['preco_venda'] = float(row['preco_venda'])
-                row['preco_compra'] = float(row['preco_compra'])
-                produtos.append(row)
-    return produtos
+def pex3_load_produtos_dm():
+    pex3_produtos_dm = []
+    if os.path.exists(pex3_PRODUTOS_CSV_dm):
+        with open(pex3_PRODUTOS_CSV_dm, 'r', encoding='utf-8') as f:
+            pex3_reader_dm = csv.DictReader(f, delimiter=';')
+            for pex3_row_dm in pex3_reader_dm:
+                pex3_row_dm['saldo'] = int(pex3_row_dm['saldo'])
+                pex3_row_dm['preco_venda'] = float(pex3_row_dm['preco_venda'])
+                pex3_row_dm['preco_compra'] = float(pex3_row_dm['preco_compra'])
+                pex3_produtos_dm.append(pex3_row_dm)
+    return pex3_produtos_dm
 
-def save_produtos(produtos):
-    with open(PRODUTOS_CSV, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f, delimiter=';')
-        writer.writerow(['codigo_barras', 'nome', 'saldo', 'preco_venda', 'preco_compra'])
-        for p in produtos:
-            writer.writerow([p['codigo_barras'], p['nome'], p['saldo'], p['preco_venda'], p['preco_compra']])
+def pex3_save_produtos_dm(pex3_produtos_dm):
+    with open(pex3_PRODUTOS_CSV_dm, 'w', newline='', encoding='utf-8') as f:
+        pex3_writer_dm = csv.writer(f, delimiter=';')
+        pex3_writer_dm.writerow(['codigo_barras', 'nome', 'saldo', 'preco_venda', 'preco_compra'])
+        for pex3_p_dm in pex3_produtos_dm:
+            pex3_writer_dm.writerow([pex3_p_dm['codigo_barras'], pex3_p_dm['nome'], pex3_p_dm['saldo'], pex3_p_dm['preco_venda'], pex3_p_dm['preco_compra']])
 
-def load_estoque_db():
-    with open(ESTOQUE_DB, 'r', encoding='utf-8') as f:
+def pex3_load_estoque_db_dm():
+    with open(pex3_ESTOQUE_DB_dm, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-def save_estoque_db(data):
-    with open(ESTOQUE_DB, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=4, ensure_ascii=False)
+def pex3_save_estoque_db_dm(pex3_data_dm):
+    with open(pex3_ESTOQUE_DB_dm, 'w', encoding='utf-8') as f:
+        json.dump(pex3_data_dm, f, indent=4, ensure_ascii=False)
 
-@app_estoque.route('/')
-def estoque_index():
-    init_produtos_csv()
-    init_estoque_db()
-    produtos = load_produtos()
+@pex3_app_estoque_dm.route('/')
+def pex3_estoque_index_dm():
+    pex3_init_produtos_csv_dm()
+    pex3_init_estoque_db_dm()
+    pex3_produtos_dm = pex3_load_produtos_dm()
     
-    total_produtos = len(produtos)
-    valor_total = sum(p['saldo'] * p['preco_venda'] for p in produtos)
-    produtos_baixo_estoque = [p for p in produtos if p['saldo'] < 5]
+    pex3_total_produtos_dm = len(pex3_produtos_dm)
+    pex3_valor_total_dm = sum(pex3_p_dm['saldo'] * pex3_p_dm['preco_venda'] for pex3_p_dm in pex3_produtos_dm)
+    pex3_produtos_baixo_estoque_dm = [pex3_p_dm for pex3_p_dm in pex3_produtos_dm if pex3_p_dm['saldo'] < 5]
     
     return render_template('estoque/index.html',
-                         produtos=produtos,
-                         total_produtos=total_produtos,
-                         valor_total=valor_total,
-                         produtos_baixo_estoque=produtos_baixo_estoque)
+                         produtos=pex3_produtos_dm,
+                         total_produtos=pex3_total_produtos_dm,
+                         valor_total=pex3_valor_total_dm,
+                         produtos_baixo_estoque=pex3_produtos_baixo_estoque_dm)
 
-@app_estoque.route('/produtos')
-def estoque_produtos():
-    init_produtos_csv()
-    produtos = load_produtos()
-    return render_template('estoque/produtos.html', produtos=produtos)
+@pex3_app_estoque_dm.route('/produtos')
+def pex3_estoque_produtos_dm():
+    pex3_init_produtos_csv_dm()
+    pex3_produtos_dm = pex3_load_produtos_dm()
+    return render_template('estoque/produtos.html', produtos=pex3_produtos_dm)
 
-@app_estoque.route('/produtos/adicionar', methods=['GET', 'POST'])
-def estoque_adicionar_produto():
+@pex3_app_estoque_dm.route('/produtos/adicionar', methods=['GET', 'POST'])
+def pex3_estoque_adicionar_produto_dm():
     if request.method == 'POST':
-        produtos = load_produtos()
-        novo_produto = {
+        pex3_produtos_dm = pex3_load_produtos_dm()
+        pex3_novo_produto_dm = {
             'codigo_barras': request.form['codigo_barras'],
             'nome': request.form['nome'],
             'saldo': int(request.form['saldo']),
             'preco_venda': float(request.form['preco_venda']),
             'preco_compra': float(request.form['preco_compra'])
         }
-        produtos.append(novo_produto)
-        save_produtos(produtos)
+        pex3_produtos_dm.append(pex3_novo_produto_dm)
+        pex3_save_produtos_dm(pex3_produtos_dm)
         flash('Produto adicionado com sucesso!', 'success')
-        return redirect(url_for('estoque_produtos'))
+        return redirect(url_for('pex3_estoque_produtos_dm'))
     
     return render_template('estoque/adicionar_produto.html')
 
-@app_estoque.route('/produtos/editar/<codigo>', methods=['GET', 'POST'])
-def estoque_editar_produto(codigo):
-    produtos = load_produtos()
-    produto = next((p for p in produtos if p['codigo_barras'] == codigo), None)
+@pex3_app_estoque_dm.route('/produtos/editar/<pex3_codigo_dm>', methods=['GET', 'POST'])
+def pex3_estoque_editar_produto_dm(pex3_codigo_dm):
+    pex3_produtos_dm = pex3_load_produtos_dm()
+    pex3_produto_dm = next((pex3_p_dm for pex3_p_dm in pex3_produtos_dm if pex3_p_dm['codigo_barras'] == pex3_codigo_dm), None)
     
-    if not produto:
+    if not pex3_produto_dm:
         flash('Produto não encontrado!', 'error')
-        return redirect(url_for('estoque_produtos'))
+        return redirect(url_for('pex3_estoque_produtos_dm'))
     
     if request.method == 'POST':
-        produto['nome'] = request.form['nome']
-        produto['saldo'] = int(request.form['saldo'])
-        produto['preco_venda'] = float(request.form['preco_venda'])
-        produto['preco_compra'] = float(request.form['preco_compra'])
-        save_produtos(produtos)
+        pex3_produto_dm['nome'] = request.form['nome']
+        pex3_produto_dm['saldo'] = int(request.form['saldo'])
+        pex3_produto_dm['preco_venda'] = float(request.form['preco_venda'])
+        pex3_produto_dm['preco_compra'] = float(request.form['preco_compra'])
+        pex3_save_produtos_dm(pex3_produtos_dm)
         flash('Produto atualizado com sucesso!', 'success')
-        return redirect(url_for('estoque_produtos'))
+        return redirect(url_for('pex3_estoque_produtos_dm'))
     
-    return render_template('estoque/editar_produto.html', produto=produto)
+    return render_template('estoque/editar_produto.html', produto=pex3_produto_dm)
 
-@app_estoque.route('/produtos/excluir/<codigo>')
-def estoque_excluir_produto(codigo):
-    produtos = load_produtos()
-    produtos = [p for p in produtos if p['codigo_barras'] != codigo]
-    save_produtos(produtos)
+@pex3_app_estoque_dm.route('/produtos/excluir/<pex3_codigo_dm>')
+def pex3_estoque_excluir_produto_dm(pex3_codigo_dm):
+    pex3_produtos_dm = pex3_load_produtos_dm()
+    pex3_produtos_dm = [pex3_p_dm for pex3_p_dm in pex3_produtos_dm if pex3_p_dm['codigo_barras'] != pex3_codigo_dm]
+    pex3_save_produtos_dm(pex3_produtos_dm)
     flash('Produto excluído com sucesso!', 'success')
-    return redirect(url_for('estoque_produtos'))
+    return redirect(url_for('pex3_estoque_produtos_dm'))
 
-@app_estoque.route('/venda', methods=['GET', 'POST'])
-def estoque_venda():
-    init_produtos_csv()
-    init_estoque_db()
-    produtos = load_produtos()
+@pex3_app_estoque_dm.route('/venda', methods=['GET', 'POST'])
+def pex3_estoque_venda_dm():
+    pex3_init_produtos_csv_dm()
+    pex3_init_estoque_db_dm()
+    pex3_produtos_dm = pex3_load_produtos_dm()
     
     if request.method == 'POST':
-        codigo = request.form['codigo_barras']
-        quantidade = int(request.form['quantidade'])
+        pex3_codigo_dm = request.form['codigo_barras']
+        pex3_quantidade_dm = int(request.form['quantidade'])
         
-        produto = next((p for p in produtos if p['codigo_barras'] == codigo), None)
-        if produto and produto['saldo'] >= quantidade:
-            produto['saldo'] -= quantidade
-            save_produtos(produtos)
+        pex3_produto_dm = next((pex3_p_dm for pex3_p_dm in pex3_produtos_dm if pex3_p_dm['codigo_barras'] == pex3_codigo_dm), None)
+        if pex3_produto_dm and pex3_produto_dm['saldo'] >= pex3_quantidade_dm:
+            pex3_produto_dm['saldo'] -= pex3_quantidade_dm
+            pex3_save_produtos_dm(pex3_produtos_dm)
             
             # Registrar venda
-            db = load_estoque_db()
-            venda = {
+            pex3_db_dm = pex3_load_estoque_db_dm()
+            pex3_venda_dm = {
                 'data': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                'codigo_barras': codigo,
-                'nome': produto['nome'],
-                'quantidade': quantidade,
-                'preco_unitario': produto['preco_venda'],
-                'total': quantidade * produto['preco_venda']
+                'codigo_barras': pex3_codigo_dm,
+                'nome': pex3_produto_dm['nome'],
+                'quantidade': pex3_quantidade_dm,
+                'preco_unitario': pex3_produto_dm['preco_venda'],
+                'total': pex3_quantidade_dm * pex3_produto_dm['preco_venda']
             }
-            db['vendas'].append(venda)
-            save_estoque_db(db)
+            pex3_db_dm['vendas'].append(pex3_venda_dm)
+            pex3_save_estoque_db_dm(pex3_db_dm)
             
-            flash(f'Venda realizada: {quantidade}x {produto["nome"]}', 'success')
+            flash(f'Venda realizada: {pex3_quantidade_dm}x {pex3_produto_dm["nome"]}', 'success')
         else:
             flash('Estoque insuficiente ou produto não encontrado!', 'error')
         
-        return redirect(url_for('estoque_venda'))
+        return redirect(url_for('pex3_estoque_venda_dm'))
     
-    return render_template('estoque/venda.html', produtos=produtos)
+    return render_template('estoque/venda.html', produtos=pex3_produtos_dm)
 
-@app_estoque.route('/compra', methods=['GET', 'POST'])
-def estoque_compra():
-    init_produtos_csv()
-    init_estoque_db()
-    produtos = load_produtos()
+@pex3_app_estoque_dm.route('/compra', methods=['GET', 'POST'])
+def pex3_estoque_compra_dm():
+    pex3_init_produtos_csv_dm()
+    pex3_init_estoque_db_dm()
+    pex3_produtos_dm = pex3_load_produtos_dm()
     
     if request.method == 'POST':
-        codigo = request.form['codigo_barras']
-        quantidade = int(request.form['quantidade'])
+        pex3_codigo_dm = request.form['codigo_barras']
+        pex3_quantidade_dm = int(request.form['quantidade'])
         
-        produto = next((p for p in produtos if p['codigo_barras'] == codigo), None)
-        if produto:
-            produto['saldo'] += quantidade
-            save_produtos(produtos)
+        pex3_produto_dm = next((pex3_p_dm for pex3_p_dm in pex3_produtos_dm if pex3_p_dm['codigo_barras'] == pex3_codigo_dm), None)
+        if pex3_produto_dm:
+            pex3_produto_dm['saldo'] += pex3_quantidade_dm
+            pex3_save_produtos_dm(pex3_produtos_dm)
             
             # Registrar compra
-            db = load_estoque_db()
-            compra = {
+            pex3_db_dm = pex3_load_estoque_db_dm()
+            pex3_compra_dm = {
                 'data': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                'codigo_barras': codigo,
-                'nome': produto['nome'],
-                'quantidade': quantidade,
-                'preco_unitario': produto['preco_compra'],
-                'total': quantidade * produto['preco_compra']
+                'codigo_barras': pex3_codigo_dm,
+                'nome': pex3_produto_dm['nome'],
+                'quantidade': pex3_quantidade_dm,
+                'preco_unitario': pex3_produto_dm['preco_compra'],
+                'total': pex3_quantidade_dm * pex3_produto_dm['preco_compra']
             }
-            db['compras'].append(compra)
-            save_estoque_db(db)
+            pex3_db_dm['compras'].append(pex3_compra_dm)
+            pex3_save_estoque_db_dm(pex3_db_dm)
             
-            flash(f'Compra registrada: {quantidade}x {produto["nome"]}', 'success')
+            flash(f'Compra registrada: {pex3_quantidade_dm}x {pex3_produto_dm["nome"]}', 'success')
         else:
             flash('Produto não encontrado!', 'error')
         
-        return redirect(url_for('estoque_compra'))
+        return redirect(url_for('pex3_estoque_compra_dm'))
     
-    return render_template('estoque/compra.html', produtos=produtos)
+    return render_template('estoque/compra.html', produtos=pex3_produtos_dm)
 
-@app_estoque.route('/relatorios')
-def estoque_relatorios():
-    init_estoque_db()
-    db = load_estoque_db()
+@pex3_app_estoque_dm.route('/relatorios')
+def pex3_estoque_relatorios_dm():
+    pex3_init_estoque_db_dm()
+    pex3_db_dm = pex3_load_estoque_db_dm()
     
-    total_vendas = sum(v['total'] for v in db.get('vendas', []))
-    total_compras = sum(c['total'] for c in db.get('compras', []))
+    pex3_total_vendas_dm = sum(pex3_v_dm['total'] for pex3_v_dm in pex3_db_dm.get('vendas', []))
+    pex3_total_compras_dm = sum(pex3_c_dm['total'] for pex3_c_dm in pex3_db_dm.get('compras', []))
     
     return render_template('estoque/relatorios.html',
-                         vendas=db.get('vendas', []),
-                         compras=db.get('compras', []),
-                         total_vendas=total_vendas,
-                         total_compras=total_compras)
+                         vendas=pex3_db_dm.get('vendas', []),
+                         compras=pex3_db_dm.get('compras', []),
+                         total_vendas=pex3_total_vendas_dm,
+                         total_compras=pex3_total_compras_dm)
 
 
 # ============================================================================
 # FUNÇÕES PARA INICIAR SERVIDORES EM THREADS
 # ============================================================================
 
-def run_login_server():
+def pex3_run_login_server_dm():
     """Executa o servidor de login na porta 5002"""
     from werkzeug.serving import make_server
-    server = make_server('127.0.0.1', 5002, app_login, threaded=True)
+    pex3_server_dm = make_server('127.0.0.1', 5002, pex3_app_login_dm, threaded=True)
     print("🔐 Servidor de Login iniciado na porta 5002")
-    server.serve_forever()
+    pex3_server_dm.serve_forever()
 
-def run_financeiro_server():
+def pex3_run_financeiro_server_dm():
     """Executa o servidor financeiro na porta 5000"""
     from werkzeug.serving import make_server
-    init_financeiro_db()
-    server = make_server('127.0.0.1', 5000, app_financeiro, threaded=True)
+    pex3_init_financeiro_db_dm()
+    pex3_server_dm = make_server('127.0.0.1', 5000, pex3_app_financeiro_dm, threaded=True)
     print("💰 Servidor Financeiro iniciado na porta 5000")
-    server.serve_forever()
+    pex3_server_dm.serve_forever()
 
-def run_estoque_server():
+def pex3_run_estoque_server_dm():
     """Executa o servidor de estoque na porta 5001"""
     from werkzeug.serving import make_server
     # Usa o sistema completo de estoque (estoque.py), compatível com templates/estoque/*
-    import estoque as estoque_module
+    import estoque as pex3_estoque_module_dm
     from jinja2 import ChoiceLoader, FileSystemLoader
 
     # Persistir dados ao lado do executável e carregar templates do RESOURCE_DIR
-    estoque_module.PRODUTOS_CSV = PRODUTOS_CSV
-    estoque_module.ESTOQUE_DB = ESTOQUE_DB
-    estoque_module.FINANCEIRO_DB = DB_FILE
+    pex3_estoque_module_dm.pex3_PRODUTOS_CSV_dm = pex3_PRODUTOS_CSV_dm
+    pex3_estoque_module_dm.pex3_ESTOQUE_DB_dm = pex3_ESTOQUE_DB_dm
+    pex3_estoque_module_dm.pex3_FINANCEIRO_DB_dm = pex3_DB_FILE_dm
 
-    templates_root = os.path.join(RESOURCE_DIR, 'templates')
-    estoque_module.app.jinja_loader = ChoiceLoader([
-        FileSystemLoader(templates_root),
-        estoque_module.app.jinja_loader,
+    pex3_templates_root_dm = os.path.join(pex3_RESOURCE_DIR_dm, 'templates')
+    pex3_estoque_module_dm.pex3_app_dm.jinja_loader = ChoiceLoader([
+        FileSystemLoader(pex3_templates_root_dm),
+        pex3_estoque_module_dm.pex3_app_dm.jinja_loader,
     ])
 
-    estoque_module.init_produtos_csv()
-    estoque_module.init_estoque_db()
-    server = make_server('127.0.0.1', 5001, estoque_module.app, threaded=True)
+    pex3_estoque_module_dm.pex3_init_produtos_csv_dm()
+    pex3_estoque_module_dm.pex3_init_estoque_db_dm()
+    pex3_server_dm = make_server('127.0.0.1', 5001, pex3_estoque_module_dm.pex3_app_dm, threaded=True)
     print("📦 Servidor de Estoque iniciado na porta 5001")
-    server.serve_forever()
+    pex3_server_dm.serve_forever()
 
 
 # ============================================================================
 # FUNÇÃO PRINCIPAL
 # ============================================================================
 
-def main():
-    global navegador_aberto
+def pex3_main_dm():
+    global pex3_navegador_aberto_dm
     
     print("=" * 60)
     print("🚀 SISTEMA INTEGRADO PEX III")
     print("=" * 60)
-    print(f"📁 Diretório de dados: {BASE_DIR}")
+    print(f"📁 Diretório de dados: {pex3_BASE_DIR_dm}")
     print("=" * 60)
     
     # Inicializar credenciais
-    inicializar_credenciais()
+    pex3_inicializar_credenciais_dm()
     
     # Iniciar servidores em threads daemon
     print("\n⏳ Iniciando servidores...")
     
-    thread_financeiro = threading.Thread(target=run_financeiro_server, daemon=True)
-    thread_estoque = threading.Thread(target=run_estoque_server, daemon=True)
-    thread_login = threading.Thread(target=run_login_server, daemon=True)
+    pex3_thread_financeiro_dm = threading.Thread(target=pex3_run_financeiro_server_dm, daemon=True)
+    pex3_thread_estoque_dm = threading.Thread(target=pex3_run_estoque_server_dm, daemon=True)
+    pex3_thread_login_dm = threading.Thread(target=pex3_run_login_server_dm, daemon=True)
     
-    thread_financeiro.start()
-    thread_estoque.start()
+    pex3_thread_financeiro_dm.start()
+    pex3_thread_estoque_dm.start()
     time.sleep(1)  # Aguardar os servidores secundários iniciarem
-    thread_login.start()
+    pex3_thread_login_dm.start()
     
     print("\n" + "=" * 60)
     print("✅ TODOS OS SERVIDORES INICIADOS COM SUCESSO!")
@@ -850,13 +849,13 @@ def main():
     print("=" * 60)
     
     # Abrir navegador por padrão; para desabilitar defina PEX3_AUTO_OPEN=0
-    if os.environ.get('PEX3_AUTO_OPEN', '1') == '1' and not navegador_aberto:
+    if os.environ.get('PEX3_AUTO_OPEN', '1') == '1' and not pex3_navegador_aberto_dm:
         time.sleep(2)
         try:
             webbrowser.open("http://127.0.0.1:5002")
-            navegador_aberto = True
-        except Exception as e:
-            print(f"⚠️ Não foi possível abrir o navegador: {e}")
+            pex3_navegador_aberto_dm = True
+        except Exception as pex3_e_dm:
+            print(f"⚠️ Não foi possível abrir o navegador: {pex3_e_dm}")
     
     # Manter o programa rodando
     try:
@@ -872,4 +871,4 @@ if __name__ == "__main__":
     # Evitar que o multiprocessing do PyInstaller cause problemas
     import multiprocessing
     multiprocessing.freeze_support()
-    main()
+    pex3_main_dm()

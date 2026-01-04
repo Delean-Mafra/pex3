@@ -404,7 +404,7 @@
             <div class="institution-info">
                 <strong>Centro Universitário União das Américas Descomplica</strong><br>
                 Curso de Tecnologia em Ciência de Dados<br>
-                <small>Aluno/Autor: Delean Plince Mafra</small>
+                <small>Dezembro de 2025</small>
             </div>
         </div>
     </header>
@@ -417,7 +417,6 @@
                 <li class="nav-item"><a class="nav-link" href="#analise">Análise</a></li>
                 <li class="nav-item"><a class="nav-link" href="#solucao">Solução</a></li>
                 <li class="nav-item"><a class="nav-link" href="#tecnologias">Tecnologias</a></li>
-                <li class="nav-item"><a class="nav-link" href="#exemplos">Exemplos</a></li>
                 <li class="nav-item"><a class="nav-link" href="#competencias">Competências</a></li>
                 <li class="nav-item"><a class="nav-link" href="#resultados">Resultados</a></li>
                 <li class="nav-item"><a class="nav-link" href="#bibliografia">Bibliografia</a></li>
@@ -667,47 +666,6 @@ codigo_barras;nome;saldo;preco_venda;preco_compra
                     </div>
                 </div>
             </div>
-
-            <h3 class="section-subtitle">4.4 Tecnologias e Bibliotecas Utilizadas</h3>
-            <div class="feature-card">
-                <h4><i class="bi bi-hdd-network"></i> Backend e Serviços</h4>
-                <ul>
-                    <li><strong>Python 3.12:</strong> Linguagem principal usada em todos os scripts, APIs e automações.</li>
-                    <li><strong>Flask + Werkzeug + Click + Itsdangerous + MarkupSafe:</strong> Conjunto do microframework responsável pelas rotas, servidor WSGI, CLI e segurança das sessões.</li>
-                    <li><strong>Jinja2:</strong> Engine de templates empregada para montar as interfaces do financeiro e do estoque.</li>
-                    <li><strong>Bibliotecas padrão (json, csv, datetime, decimal, hashlib, secrets, threading, subprocess, pathlib, os, sys, webbrowser, time):</strong> Usadas para persistência, cálculos, criptografia, multitarefa e abertura integrada dos sistemas.</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <h4><i class="bi bi-window"></i> Frontend e Visualização</h4>
-                <ul>
-                    <li><strong>HTML5 + CSS3 + JavaScript ES6:</strong> Base das telas responsivas e animações do relatório e dos sistemas.</li>
-                    <li><strong>Bootstrap 5.3 + Bootstrap Icons:</strong> Componentes e ícones utilizados em todo o layout.</li>
-                    <li><strong>Chart.js:</strong> Biblioteca responsável pelos gráficos analíticos do módulo financeiro.</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <h4><i class="bi bi-server"></i> Persistência e Integrações</h4>
-                <ul>
-                    <li><strong>Arquivos JSON e CSV:</strong> Bases locais que armazenam transações financeiras, movimentações de estoque e catálogo de produtos.</li>
-                    <li><strong>pathlib e shutil:</strong> Gerenciam caminhos e cópias de arquivos nos scripts de preparação e distribuição.</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <h4><i class="bi bi-gear"></i> Automação, Distribuição e Segurança</h4>
-                <ul>
-                    <li><strong>PyInstaller:</strong> Empacota o sistema em um executável único com todos os templates e dependências.</li>
-                    <li><strong>Windows signtool / osslsigncode:</strong> Responsáveis pela assinatura digital com certificado PFX.</li>
-                    <li><strong>hashlib (SHA256):</strong> Utilizado para criptografar as credenciais do sistema de login.</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <h4><i class="bi bi-file-earmark-text"></i> Documentação e Relatórios</h4>
-                <ul>
-                    <li><strong>python-docx:</strong> Biblioteca empregada para gerar automaticamente o relatório em conformidade com a NBR-15287:2025.</li>
-                    <li><strong>Ferramentas ABNT/NBR:</strong> Metodologia aplicada na produção do relatório textual e do guia de compilação.</li>
-                </ul>
-            </div>
         </section>
         
         <!-- Competências -->
@@ -795,328 +753,6 @@ codigo_barras;nome;saldo;preco_venda;preco_compra
             </div>
         </section>
         
-        <!-- Exemplos de Uso -->
-        <section id="exemplos" class="section">
-            <h2 class="section-title"><i class="bi bi-window-stack"></i> 7. Exemplos de Uso - Interface do Projeto</h2>
-            
-            <p>Esta seção apresenta protótipos visuais das principais interfaces do sistema desenvolvido, demonstrando como o projeto ficou e oferecendo uma visão clara da experiência do usuário.</p>
-            
-            <h3 class="section-subtitle">7.1 Dashboard Financeiro</h3>
-            <p>Tela inicial do sistema com resumo de receitas, despesas e saldo. Inclui filtro por período para análise temporal.</p>
-            
-            <div class="screenshot-container">
-                <div class="screenshot-header">
-                    <div class="screenshot-dot red"></div>
-                    <div class="screenshot-dot yellow"></div>
-                    <div class="screenshot-dot green"></div>
-                </div>
-                <div class="screenshot-content">
-                    <div style="text-align: left; padding: 20px; background: #f7fafc; border-radius: 8px;">
-                        <div style="display: flex; gap: 20px; margin-bottom: 20px;">
-                            <div style="flex: 1;">
-                                <strong style="color: #666;">Data Início</strong>
-                                <input type="date" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-top: 5px;">
-                            </div>
-                            <div style="flex: 1;">
-                                <strong style="color: #666;">Data Fim</strong>
-                                <input type="date" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-top: 5px;">
-                            </div>
-                            <div style="flex: 1; display: flex; align-items: flex-end;">
-                                <button style="width: 100%; padding: 8px; background: #0d6efd; color: white; border: none; border-radius: 4px; cursor: pointer;">Filtrar Resumo</button>
-                            </div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
-                            <div style="background: #0d6efd; color: white; padding: 20px; border-radius: 8px; text-align: center;">
-                                <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">Receitas</p>
-                                <h3 style="margin: 5px 0 0 0; font-size: 1.5rem;">R$ 5.240,00</h3>
-                            </div>
-                            <div style="background: #dc3545; color: white; padding: 20px; border-radius: 8px; text-align: center;">
-                                <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">Despesas</p>
-                                <h3 style="margin: 5px 0 0 0; font-size: 1.5rem;">R$ 3.180,00</h3>
-                            </div>
-                            <div style="background: #198754; color: white; padding: 20px; border-radius: 8px; text-align: center;">
-                                <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">Saldo no Período</p>
-                                <h3 style="margin: 5px 0 0 0; font-size: 1.5rem;">R$ 2.060,00</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <h3 class="section-subtitle">7.2 Formulário de Lançamento</h3>
-            <p>Interface para registrar novas receitas e despesas com campos estruturados e categorização automática.</p>
-            
-            <div class="screenshot-container">
-                <div class="screenshot-header">
-                    <div class="screenshot-dot red"></div>
-                    <div class="screenshot-dot yellow"></div>
-                    <div class="screenshot-dot green"></div>
-                </div>
-                <div class="screenshot-content">
-                    <div style="max-width: 600px; margin: 0 auto; text-align: left; padding: 20px;">
-                        <h4 style="color: #1a365d; margin-bottom: 20px;">➕ Adicionar Despesa</h4>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Data da Transação</label>
-                            <input type="date" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-                        </div>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Valor</label>
-                            <input type="number" placeholder="0.00" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-                        </div>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Categoria</label>
-                            <select style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-                                <option>Alimentação</option>
-                                <option>Transporte</option>
-                                <option>Utilities</option>
-                                <option>Diversos</option>
-                            </select>
-                        </div>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Forma de Pagamento</label>
-                            <select style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-                                <option>PIX</option>
-                                <option>Cartão</option>
-                                <option>Dinheiro</option>
-                                <option>Outros</option>
-                            </select>
-                        </div>
-                        
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Descrição</label>
-                            <textarea style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; height: 80px;" placeholder="Adicione uma descrição..."></textarea>
-                        </div>
-                        
-                        <button style="width: 100%; padding: 10px; background: #0d6efd; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 500;">Salvar Lançamento</button>
-                    </div>
-                </div>
-            </div>
-            
-            <h3 class="section-subtitle">7.3 Visualização de Lançamentos</h3>
-            <p>Tabela com histórico completo de todas as transações, permitindo visualizar e gerenciar registros.</p>
-            
-            <div class="screenshot-container">
-                <div class="screenshot-header">
-                    <div class="screenshot-dot red"></div>
-                    <div class="screenshot-dot yellow"></div>
-                    <div class="screenshot-dot green"></div>
-                </div>
-                <div class="screenshot-content">
-                    <div style="text-align: left; padding: 20px; overflow-x: auto;">
-                        <table class="report-table" style="margin: 0;">
-                            <thead>
-                                <tr>
-                                    <th>Data</th>
-                                    <th>Tipo</th>
-                                    <th>Categoria</th>
-                                    <th>Valor</th>
-                                    <th>Forma Pagto</th>
-                                    <th>Descrição</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>2025-12-30</td>
-                                    <td><span style="background: #0d6efd; color: white; padding: 2px 8px; border-radius: 3px; font-size: 0.85rem;">Receita</span></td>
-                                    <td>Vendas</td>
-                                    <td style="color: #198754; font-weight: 500;">+R$ 850,00</td>
-                                    <td>PIX</td>
-                                    <td>Venda produto ABC</td>
-                                </tr>
-                                <tr>
-                                    <td>2025-12-30</td>
-                                    <td><span style="background: #dc3545; color: white; padding: 2px 8px; border-radius: 3px; font-size: 0.85rem;">Despesa</span></td>
-                                    <td>Alimentação</td>
-                                    <td style="color: #dc3545; font-weight: 500;">-R$ 125,50</td>
-                                    <td>Cartão</td>
-                                    <td>Compra supermercado</td>
-                                </tr>
-                                <tr>
-                                    <td>2025-12-29</td>
-                                    <td><span style="background: #0d6efd; color: white; padding: 2px 8px; border-radius: 3px; font-size: 0.85rem;">Receita</span></td>
-                                    <td>Salário</td>
-                                    <td style="color: #198754; font-weight: 500;">+R$ 3.500,00</td>
-                                    <td>PIX</td>
-                                    <td>Salário mensal</td>
-                                </tr>
-                                <tr>
-                                    <td>2025-12-28</td>
-                                    <td><span style="background: #dc3545; color: white; padding: 2px 8px; border-radius: 3px; font-size: 0.85rem;">Despesa</span></td>
-                                    <td>Diversos</td>
-                                    <td style="color: #dc3545; font-weight: 500;">-R$ 200,00</td>
-                                    <td>Dinheiro</td>
-                                    <td>Manutenção geral</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            
-            <h3 class="section-subtitle">7.4 Dashboard Analytics</h3>
-            <p>Seção com 5 gráficos analíticos para visualização e análise dos dados financeiros.</p>
-            
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="screenshot-container">
-                        <div class="screenshot-header">
-                            <div class="screenshot-dot red"></div>
-                            <div class="screenshot-dot yellow"></div>
-                            <div class="screenshot-dot green"></div>
-                        </div>
-                        <div class="screenshot-content">
-                            <div style="padding: 20px;">
-                                <h5 style="margin-bottom: 15px; color: #1a365d;">Receita por Forma de Pagamento</h5>
-                                <div style="background: #f7fafc; padding: 40px; border-radius: 8px; text-align: center; height: 250px; display: flex; align-items: center; justify-content: center;">
-                                    <div style="width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(#2ecc71 0deg 90deg, #3498db 90deg 180deg, #9b59b6 180deg 270deg, #f1c40f 270deg 360deg); position: relative;">
-                                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: white; border-radius: 50%;"></div>
-                                    </div>
-                                </div>
-                                <div style="margin-top: 15px; font-size: 0.85rem;">
-                                    <div>● PIX: 45%</div>
-                                    <div>● Cartão: 30%</div>
-                                    <div>● Dinheiro: 20%</div>
-                                    <div>● Outros: 5%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-6">
-                    <div class="screenshot-container">
-                        <div class="screenshot-header">
-                            <div class="screenshot-dot red"></div>
-                            <div class="screenshot-dot yellow"></div>
-                            <div class="screenshot-dot green"></div>
-                        </div>
-                        <div class="screenshot-content">
-                            <div style="padding: 20px;">
-                                <h5 style="margin-bottom: 15px; color: #1a365d;">Gasto por Categoria</h5>
-                                <div style="background: #f7fafc; padding: 20px; border-radius: 8px;">
-                                    <div style="margin-bottom: 15px;">
-                                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                            <span>Alimentação</span>
-                                            <span style="font-weight: 500;">R$ 850</span>
-                                        </div>
-                                        <div style="background: #e2e8f0; height: 20px; border-radius: 4px; overflow: hidden;">
-                                            <div style="background: #f39c12; height: 100%; width: 65%;"></div>
-                                        </div>
-                                    </div>
-                                    <div style="margin-bottom: 15px;">
-                                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                            <span>Transporte</span>
-                                            <span style="font-weight: 500;">R$ 380</span>
-                                        </div>
-                                        <div style="background: #e2e8f0; height: 20px; border-radius: 4px; overflow: hidden;">
-                                            <div style="background: #e74c3c; height: 100%; width: 29%;"></div>
-                                        </div>
-                                    </div>
-                                    <div style="margin-bottom: 15px;">
-                                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                            <span>Utilities</span>
-                                            <span style="font-weight: 500;">R$ 210</span>
-                                        </div>
-                                        <div style="background: #e2e8f0; height: 20px; border-radius: 4px; overflow: hidden;">
-                                            <div style="background: #3498db; height: 100%; width: 16%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-12">
-                    <div class="screenshot-container">
-                        <div class="screenshot-header">
-                            <div class="screenshot-dot red"></div>
-                            <div class="screenshot-dot yellow"></div>
-                            <div class="screenshot-dot green"></div>
-                        </div>
-                        <div class="screenshot-content">
-                            <div style="padding: 20px;">
-                                <h5 style="margin-bottom: 15px; color: #1a365d;">Evolução do Saldo Acumulado</h5>
-                                <div style="background: #f7fafc; padding: 20px; border-radius: 8px; height: 200px; position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 5px;">
-                                    <div style="flex: 1; background: linear-gradient(to top, #3182ce, #bee3f8); height: 40%;"></div>
-                                    <div style="flex: 1; background: linear-gradient(to top, #3182ce, #bee3f8); height: 55%;"></div>
-                                    <div style="flex: 1; background: linear-gradient(to top, #3182ce, #bee3f8); height: 70%;"></div>
-                                    <div style="flex: 1; background: linear-gradient(to top, #3182ce, #bee3f8); height: 65%;"></div>
-                                    <div style="flex: 1; background: linear-gradient(to top, #3182ce, #bee3f8); height: 80%;"></div>
-                                    <div style="flex: 1; background: linear-gradient(to top, #3182ce, #bee3f8); height: 90%;"></div>
-                                </div>
-                                <div style="margin-top: 10px; font-size: 0.85rem; color: #666;">
-                                    Nov → Dez → Jan → Fev → Mar → Abr
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <h3 class="section-subtitle">7.5 Gestão de Categorias</h3>
-            <p>Interface para criar e gerenciar categorias personalizadas de receitas e despesas.</p>
-            
-            <div class="screenshot-container">
-                <div class="screenshot-header">
-                    <div class="screenshot-dot red"></div>
-                    <div class="screenshot-dot yellow"></div>
-                    <div class="screenshot-dot green"></div>
-                </div>
-                <div class="screenshot-content">
-                    <div style="text-align: left; padding: 20px;">
-                        <h4 style="color: #1a365d; margin-bottom: 20px;">⚙️ Categorias</h4>
-                        
-                        <div style="margin-bottom: 20px;">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                <input type="text" placeholder="Nome da categoria" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-                                <select style="padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-                                    <option>receita</option>
-                                    <option>despesa</option>
-                                    <option>ambos</option>
-                                </select>
-                            </div>
-                            <button style="width: 100%; padding: 10px; margin-top: 10px; background: #0d6efd; color: white; border: none; border-radius: 4px; cursor: pointer;">Adicionar Categoria</button>
-                        </div>
-                        
-                        <div>
-                            <table class="report-table" style="margin: 0; font-size: 0.9rem;">
-                                <thead>
-                                    <tr>
-                                        <th>Nome</th>
-                                        <th>Tipo</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Salário</td>
-                                        <td><span style="background: #0d6efd; color: white; padding: 2px 8px; border-radius: 3px; font-size: 0.8rem;">receita</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Alimentação</td>
-                                        <td><span style="background: #dc3545; color: white; padding: 2px 8px; border-radius: 3px; font-size: 0.8rem;">despesa</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Diversos</td>
-                                        <td><span style="background: #6c757d; color: white; padding: 2px 8px; border-radius: 3px; font-size: 0.8rem;">ambos</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Transporte</td>
-                                        <td><span style="background: #dc3545; color: white; padding: 2px 8px; border-radius: 3px; font-size: 0.8rem;">despesa</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
         <!-- Resultados -->
         <section id="resultados" class="section">
             <h2 class="section-title"><i class="bi bi-trophy"></i> 7. Resultados e Conclusão</h2>
@@ -1170,52 +806,6 @@ codigo_barras;nome;saldo;preco_venda;preco_compra
             
             <p>O sistema desenvolvido resolve problemas concretos de gestão financeira e controle de estoque, automatizando processos que antes eram manuais e propensos a erros. A integração entre os módulos garante consistência dos dados e oferece uma visão unificada da saúde do negócio.</p>
         </section>
-
-        <!-- DOI Section -->
-        <section class="section">
-            <h2 class="section-title"><i class="bi bi-bookmark-star"></i> 8. DOI - Identificador Digital Único</h2>
-            
-            <h3 class="section-subtitle">Digital Object Identifier</h3>
-            <p>Este projeto possui um DOI (Digital Object Identifier), que é um identificador digital único e persistente reconhecido internacionalmente. O DOI garante que esta obra possa ser citada, referenciada e localizada de forma permanente no meio acadêmico e científico.</p>
-            
-            <div class="highlight-box">
-                <h4><i class="bi bi-key"></i> Identificador DOI</h4>
-                <p style="font-size: 0.95rem; margin-bottom: 15px;">
-                    <strong>DOI:</strong> <code style="background: #f7fafc; padding: 2px 6px; border-radius: 3px; font-family: monospace;">10.5281/zenodo.18122476</code>
-                </p>
-                <p style="margin-bottom: 15px;">
-                    <strong>Link Permanente:</strong><br>
-                    <a href="https://doi.org/10.5281/zenodo.18122476" target="_blank" style="color: var(--accent-color); text-decoration: none; word-break: break-all;">
-                        https://doi.org/10.5281/zenodo.18122476
-                    </a>
-                </p>
-                <p style="margin-bottom: 0;">
-                    <strong>Repositório:</strong> Zenodo - Repositório Científico Europeu
-                </p>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="feature-card">
-                        <h4><i class="bi bi-check-circle"></i> Vantagens do DOI</h4>
-                        <ul>
-                            <li>Identificação única e permanente</li>
-                            <li>Reconhecimento acadêmico internacional</li>
-                            <li>Facilita citações e referências</li>
-                            <li>Aumenta a visibilidade da pesquisa</li>
-                            <li>Garante a persistência do link</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-md-6">
-                    <div class="feature-card">
-                        <h4><i class="bi bi-globe"></i> Padrão Internacional</h4>
-                        <p>O DOI é mantido pela International DOI Foundation (IDF) e é amplamente aceito por editoras, bibliotecas e bases de dados acadêmicas mundiais. A atribuição do DOI certifica que este projeto atende aos padrões de qualidade e rigor acadêmico necessários para publicação em repositórios científicos internacionais.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
         
     </main>
     
@@ -1225,8 +815,9 @@ codigo_barras;nome;saldo;preco_venda;preco_compra
             <p><strong>Projeto de Extensão III - Análise da Situação</strong></p>
             <p>Centro Universitário União das Américas Descomplica</p>
             <p>Curso de Tecnologia em Ciência de Dados</p>
-            <!-- <p class="mt-3"><small>2025 a 2026</small></p> -->
-            <p class="mt-4"><small>Copyright 2026 © Delean Mafra - Todos os direitos reservados | Licença: <a href="http://delean-mafra.github.io/pex3/direitos_autorais" target="_blank">CC BY-NC 4.0</a></small></p>
+            <p class="mt-3"><small>2025 a 2026</small></p>
+            <p class="mt-4"><small>DOI: <a href="https://doi.org/10.5281/zenodo.18122476" target="_blank">https://doi.org/10.5281/zenodo.18122476</a></small></p>
+            <p class="mt-4"><small>Copyright © Delean Mafra - Todos os direitos reservados | Licença: <a href="http://delean-mafra.github.io/pex3/direitos_autorais" target="_blank">CC BY-NC 4.0</a></small></p>
         </div>
     </footer>
     

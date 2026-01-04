@@ -1,5 +1,9 @@
 # Referências
 
+## Identificador Digital (DOI)
+
+**DOI:** [https://doi.org/10.5281/zenodo.18122476](https://doi.org/10.5281/zenodo.18122476)
+
 ## Estilo ABNT (NBR 6023:2018)
 
 INTERNATIONAL ORGANIZATION FOR STANDARDIZATION. ISO 56005:2020 – Innovation management — Tools and methods for intellectual property management. Geneva: ISO, 2020.  

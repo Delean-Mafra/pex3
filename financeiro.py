@@ -4,13 +4,13 @@ import os
 from datetime import datetime
 from collections import defaultdict
 
-app = Flask(__name__)
-DB_FILE = 'database.json'
+pex3_app_dm = Flask(__name__)
+pex3_DB_FILE_dm = 'database.json'
 
 # Inicialização do Banco de Dados JSON
-def init_db():
-    if not os.path.exists(DB_FILE):
-        data = {
+def pex3_init_db_dm():
+    if not os.path.exists(pex3_DB_FILE_dm):
+        pex3_data_dm = {
             "transactions": [],
             "categories": [
                 {"nome": "Salário", "tipo": "receita"},
@@ -22,65 +22,65 @@ def init_db():
             ],
             "payment_methods": ["PIX", "Cartão", "Dinheiro", "Boleto", "Outros"]
         }
-        with open(DB_FILE, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4, ensure_ascii=False)
+        with open(pex3_DB_FILE_dm, 'w', encoding='utf-8') as f:
+            json.dump(pex3_data_dm, f, indent=4, ensure_ascii=False)
 
-def load_db():
-    with open(DB_FILE, 'r', encoding='utf-8') as f:
+def pex3_load_db_dm():
+    with open(pex3_DB_FILE_dm, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-def save_db(data):
-    with open(DB_FILE, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=4, ensure_ascii=False)
+def pex3_save_db_dm(pex3_data_dm):
+    with open(pex3_DB_FILE_dm, 'w', encoding='utf-8') as f:
+        json.dump(pex3_data_dm, f, indent=4, ensure_ascii=False)
 
-def filtrar_por_data(transacoes, data_inicio, data_fim):
-    if not data_inicio and not data_fim:
-        return transacoes
+def pex3_filtrar_por_data_dm(pex3_transacoes_dm, pex3_data_inicio_dm, pex3_data_fim_dm):
+    if not pex3_data_inicio_dm and not pex3_data_fim_dm:
+        return pex3_transacoes_dm
     
-    filtradas = []
-    for t in transacoes:
-        data_t = t['data_gasto'] # Formato YYYY-MM-DD
-        if data_inicio and data_t < data_inicio:
+    pex3_filtradas_dm = []
+    for pex3_t_dm in pex3_transacoes_dm:
+        pex3_data_t_dm = pex3_t_dm['data_gasto'] # Formato YYYY-MM-DD
+        if pex3_data_inicio_dm and pex3_data_t_dm < pex3_data_inicio_dm:
             continue
-        if data_fim and data_t > data_fim:
+        if pex3_data_fim_dm and pex3_data_t_dm > pex3_data_fim_dm:
             continue
-        filtradas.append(t)
-    return filtradas
+        pex3_filtradas_dm.append(pex3_t_dm)
+    return pex3_filtradas_dm
 
-@app.route('/')
-def index():
-    db = load_db()
-    data_inicio = request.args.get('data_inicio', '')
-    data_fim = request.args.get('data_fim', '')
+@pex3_app_dm.route('/')
+def pex3_index_dm():
+    pex3_db_dm = pex3_load_db_dm()
+    pex3_data_inicio_dm = request.args.get('data_inicio', '')
+    pex3_data_fim_dm = request.args.get('data_fim', '')
     
-    transacoes = filtrar_por_data(db['transactions'], data_inicio, data_fim)
+    pex3_transacoes_dm = pex3_filtrar_por_data_dm(pex3_db_dm['transactions'], pex3_data_inicio_dm, pex3_data_fim_dm)
     
-    receitas = sum(t['valor'] for t in transacoes if t['tipo'] == 'receber')
-    despesas = sum(t['valor'] for t in transacoes if t['tipo'] == 'pagar')
+    pex3_receitas_dm = sum(pex3_t_dm['valor'] for pex3_t_dm in pex3_transacoes_dm if pex3_t_dm['tipo'] == 'receber')
+    pex3_despesas_dm = sum(pex3_t_dm['valor'] for pex3_t_dm in pex3_transacoes_dm if pex3_t_dm['tipo'] == 'pagar')
     
-    return render_template('index.html', receitas=receitas, despesas=despesas, 
-                           saldo=receitas-despesas, data_inicio=data_inicio, data_fim=data_fim)
+    return render_template('index.html', receitas=pex3_receitas_dm, despesas=pex3_despesas_dm, 
+                           saldo=pex3_receitas_dm-pex3_despesas_dm, data_inicio=pex3_data_inicio_dm, data_fim=pex3_data_fim_dm)
 
-@app.route('/lancamentos')
-def lancamentos():
-    db = load_db()
-    data_inicio = request.args.get('data_inicio', '')
-    data_fim = request.args.get('data_fim', '')
+@pex3_app_dm.route('/lancamentos')
+def pex3_lancamentos_dm():
+    pex3_db_dm = pex3_load_db_dm()
+    pex3_data_inicio_dm = request.args.get('data_inicio', '')
+    pex3_data_fim_dm = request.args.get('data_fim', '')
     
-    transacoes = filtrar_por_data(db['transactions'], data_inicio, data_fim)
+    pex3_transacoes_dm = pex3_filtrar_por_data_dm(pex3_db_dm['transactions'], pex3_data_inicio_dm, pex3_data_fim_dm)
     # Ordenar por data decrescente
-    transacoes.sort(key=lambda x: x['data_gasto'], reverse=True)
+    pex3_transacoes_dm.sort(key=lambda x: x['data_gasto'], reverse=True)
     
-    return render_template('lancamentos.html', transactions=transacoes, 
-                           data_inicio=data_inicio, data_fim=data_fim)
+    return render_template('lancamentos.html', transactions=pex3_transacoes_dm, 
+                           data_inicio=pex3_data_inicio_dm, data_fim=pex3_data_fim_dm)
 
-@app.route('/cadastrar/<tipo>', methods=['GET', 'POST'])
-def cadastrar(tipo):
-    db = load_db()
+@pex3_app_dm.route('/cadastrar/<pex3_tipo_dm>', methods=['GET', 'POST'])
+def pex3_cadastrar_dm(pex3_tipo_dm):
+    pex3_db_dm = pex3_load_db_dm()
     if request.method == 'POST':
-        nova_transacao = {
-            "id": len(db['transactions']) + 1,
-            "tipo": tipo,
+        pex3_nova_transacao_dm = {
+            "id": len(pex3_db_dm['transactions']) + 1,
+            "tipo": pex3_tipo_dm,
             "data_gasto": request.form['data_gasto'],
             "data_criacao": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "valor": float(request.form['valor']),
@@ -88,75 +88,75 @@ def cadastrar(tipo):
             "forma_pagamento": request.form.get('forma_pagamento', 'N/A'),
             "descricao": request.form['descricao']
         }
-        db['transactions'].append(nova_transacao)
-        save_db(db)
-        return redirect(url_for('lancamentos'))
+        pex3_db_dm['transactions'].append(pex3_nova_transacao_dm)
+        pex3_save_db_dm(pex3_db_dm)
+        return redirect(url_for('pex3_lancamentos_dm'))
     
-    if tipo == 'receber':
-        categorias = [c['nome'] for c in db['categories'] if c['tipo'] in ['receita', 'ambos']]
+    if pex3_tipo_dm == 'receber':
+        pex3_categorias_dm = [pex3_c_dm['nome'] for pex3_c_dm in pex3_db_dm['categories'] if pex3_c_dm['tipo'] in ['receita', 'ambos']]
     else:
-        categorias = [c['nome'] for c in db['categories'] if c['tipo'] in ['despesa', 'ambos']]
+        pex3_categorias_dm = [pex3_c_dm['nome'] for pex3_c_dm in pex3_db_dm['categories'] if pex3_c_dm['tipo'] in ['despesa', 'ambos']]
         
-    return render_template('form_lancamento.html', tipo=tipo, categorias=categorias, metodos=db['payment_methods'])
+    return render_template('form_lancamento.html', tipo=pex3_tipo_dm, categorias=pex3_categorias_dm, metodos=pex3_db_dm['payment_methods'])
 
-@app.route('/categorias', methods=['GET', 'POST'])
-def categorias():
-    db = load_db()
+@pex3_app_dm.route('/categorias', methods=['GET', 'POST'])
+def pex3_categorias_dm():
+    pex3_db_dm = pex3_load_db_dm()
     if request.method == 'POST':
-        db['categories'].append({"nome": request.form['nome'], "tipo": request.form['tipo']})
-        save_db(db)
-        return redirect(url_for('categorias'))
-    return render_template('categorias.html', categorias=db['categories'])
+        pex3_db_dm['categories'].append({"nome": request.form['nome'], "tipo": request.form['tipo']})
+        pex3_save_db_dm(pex3_db_dm)
+        return redirect(url_for('pex3_categorias_dm'))
+    return render_template('categorias.html', categorias=pex3_db_dm['categories'])
 
-@app.route('/analytics')
-def analytics():
-    db = load_db()
-    data_inicio = request.args.get('data_inicio', '')
-    data_fim = request.args.get('data_fim', '')
+@pex3_app_dm.route('/analytics')
+def pex3_analytics_dm():
+    pex3_db_dm = pex3_load_db_dm()
+    pex3_data_inicio_dm = request.args.get('data_inicio', '')
+    pex3_data_fim_dm = request.args.get('data_fim', '')
     
-    transactions = filtrar_por_data(db['transactions'], data_inicio, data_fim)
-    transactions.sort(key=lambda x: x['data_gasto'])
+    pex3_transactions_dm = pex3_filtrar_por_data_dm(pex3_db_dm['transactions'], pex3_data_inicio_dm, pex3_data_fim_dm)
+    pex3_transactions_dm.sort(key=lambda x: x['data_gasto'])
 
-    gastos_por_categoria = defaultdict(float)
-    mensal_rec_desp = defaultdict(lambda: {"receita": 0, "despesa": 0})
-    evolucao_datas = []
-    evolucao_saldo = []
-    saldo_acumulado = 0
-    pagamentos_receita_data = defaultdict(float)
-    mensal_categoria = defaultdict(lambda: defaultdict(float))
+    pex3_gastos_por_categoria_dm = defaultdict(float)
+    pex3_mensal_rec_desp_dm = defaultdict(lambda: {"receita": 0, "despesa": 0})
+    pex3_evolucao_datas_dm = []
+    pex3_evolucao_saldo_dm = []
+    pex3_saldo_acumulado_dm = 0
+    pex3_pagamentos_receita_data_dm = defaultdict(float)
+    pex3_mensal_categoria_dm = defaultdict(lambda: defaultdict(float))
 
-    for t in transactions:
-        data_dt = t['data_gasto']
-        mes_ano = data_dt[:7]
-        valor = t['valor']
+    for pex3_t_dm in pex3_transactions_dm:
+        pex3_data_dt_dm = pex3_t_dm['data_gasto']
+        pex3_mes_ano_dm = pex3_data_dt_dm[:7]
+        pex3_valor_dm = pex3_t_dm['valor']
         
-        if t['tipo'] == 'receber':
-            saldo_acumulado += valor
-            mensal_rec_desp[mes_ano]["receita"] += valor
-            pagamentos_receita_data[t['forma_pagamento']] += valor
+        if pex3_t_dm['tipo'] == 'receber':
+            pex3_saldo_acumulado_dm += pex3_valor_dm
+            pex3_mensal_rec_desp_dm[pex3_mes_ano_dm]["receita"] += pex3_valor_dm
+            pex3_pagamentos_receita_data_dm[pex3_t_dm['forma_pagamento']] += pex3_valor_dm
         else:
-            saldo_acumulado -= valor
-            mensal_rec_desp[mes_ano]["despesa"] += valor
-            gastos_por_categoria[t['categoria']] += valor
-            mensal_categoria[mes_ano][t['categoria']] += valor
+            pex3_saldo_acumulado_dm -= pex3_valor_dm
+            pex3_mensal_rec_desp_dm[pex3_mes_ano_dm]["despesa"] += pex3_valor_dm
+            pex3_gastos_por_categoria_dm[pex3_t_dm['categoria']] += pex3_valor_dm
+            pex3_mensal_categoria_dm[pex3_mes_ano_dm][pex3_t_dm['categoria']] += pex3_valor_dm
         
-        evolucao_datas.append(data_dt)
-        evolucao_saldo.append(saldo_acumulado)
+        pex3_evolucao_datas_dm.append(pex3_data_dt_dm)
+        pex3_evolucao_saldo_dm.append(pex3_saldo_acumulado_dm)
 
-    meses_ordenados = sorted(mensal_rec_desp.keys())
-    todas_categorias_gastos = list(gastos_por_categoria.keys())
-    dados_mensais_cat = {cat: [mensal_categoria[mes][cat] for mes in meses_ordenados] for cat in todas_categorias_gastos}
+    pex3_meses_ordenados_dm = sorted(pex3_mensal_rec_desp_dm.keys())
+    pex3_todas_categorias_gastos_dm = list(pex3_gastos_por_categoria_dm.keys())
+    pex3_dados_mensais_cat_dm = {pex3_cat_dm: [pex3_mensal_categoria_dm[pex3_mes_dm][pex3_cat_dm] for pex3_mes_dm in pex3_meses_ordenados_dm] for pex3_cat_dm in pex3_todas_categorias_gastos_dm}
 
     return render_template('analytics.html', 
-        cat_labels=list(gastos_por_categoria.keys()), cat_values=list(gastos_por_categoria.values()),
-        pag_labels=list(pagamentos_receita_data.keys()), pag_values=list(pagamentos_receita_data.values()),
-        meses_labels=meses_ordenados, 
-        mensal_receitas=[mensal_rec_desp[m]["receita"] for m in meses_ordenados],
-        mensal_despesas=[mensal_rec_desp[m]["despesa"] for m in meses_ordenados],
-        evolucao_datas=evolucao_datas, evolucao_saldo=evolucao_saldo,
-        dados_mensais_cat=dados_mensais_cat, categorias_lista=todas_categorias_gastos,
-        data_inicio=data_inicio, data_fim=data_fim)
+        cat_labels=list(pex3_gastos_por_categoria_dm.keys()), cat_values=list(pex3_gastos_por_categoria_dm.values()),
+        pag_labels=list(pex3_pagamentos_receita_data_dm.keys()), pag_values=list(pex3_pagamentos_receita_data_dm.values()),
+        meses_labels=pex3_meses_ordenados_dm, 
+        mensal_receitas=[pex3_mensal_rec_desp_dm[pex3_m_dm]["receita"] for pex3_m_dm in pex3_meses_ordenados_dm],
+        mensal_despesas=[pex3_mensal_rec_desp_dm[pex3_m_dm]["despesa"] for pex3_m_dm in pex3_meses_ordenados_dm],
+        evolucao_datas=pex3_evolucao_datas_dm, evolucao_saldo=pex3_evolucao_saldo_dm,
+        dados_mensais_cat=pex3_dados_mensais_cat_dm, categorias_lista=pex3_todas_categorias_gastos_dm,
+        data_inicio=pex3_data_inicio_dm, data_fim=pex3_data_fim_dm)
 
 if __name__ == '__main__':
-    init_db()
-    app.run(debug=True)
+    pex3_init_db_dm()
+    pex3_app_dm.run(debug=True)

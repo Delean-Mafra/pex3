@@ -3,7 +3,7 @@
 
 **Centro Universitário União das Américas Descomplica**  
 **Curso de Tecnologia em Ciência de Dados**  
-**Dezembro de 2025**
+**Ano 2026**
 
 ---
 
@@ -261,6 +261,8 @@ O sistema desenvolvido resolve problemas concretos de gestão financeira e contr
 **Centro Universitário União das Américas Descomplica**  
 **Curso de Tecnologia em Ciência de Dados**  
 **Projeto de Extensão III - Análise da Situação**  
-**Dezembro de 2025**  
+**Ano: 2026**  
+
+**DOI:** [https://doi.org/10.5281/zenodo.18122476](https://doi.org/10.5281/zenodo.18122476)
 
 **Copyright © Delean Mafra - Todos os direitos reservados | Licença: CC BY-NC 4.0**
